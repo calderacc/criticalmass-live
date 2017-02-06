@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassLiveBundle\Controller;
+namespace AppBundle\Controller;
 
 use Caldera\Bundle\CriticalmassSiteBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

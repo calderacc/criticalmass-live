@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassLiveBundle\Controller;
+namespace AppBundle\Controller;
 
 use Caldera\Bundle\CalderaBundle\Entity\BlogPost;
 use Caldera\Bundle\CalderaBundle\Entity\City;
