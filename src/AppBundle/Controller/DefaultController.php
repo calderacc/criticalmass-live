@@ -8,9 +8,6 @@ class DefaultController extends AbstractController
 {
     public function indexAction(Request $request)
     {
-        $this->getMetadata()
-            ->setDescription('Live-Tracking für Critical-Mass-Touren');
-
         $startDateTime = new \DateTime();
         $startDateTime->sub(new \DateInterval('PT6H'));
 
