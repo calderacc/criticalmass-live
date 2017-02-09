@@ -18,7 +18,6 @@ class CriticalmapsUser
      */
     protected $id;
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */

@@ -64,23 +64,9 @@ class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
 
             $criticalmapsUser = $this->findCriticalmapsUserForIdentifier($identifier);
 
-            /** @var Ride $ride */
-            $ride = null;
-
             if (!$criticalmapsUser) {
                 $criticalmapsUser = $this->createNewCriticalmapsUser($identifier);
 
-                $ride = $this->findRideForPosition($position);
-
-                if ($ride) {
-                    $criticalmapsUser->setRide($ride);
-                    $criticalmapsUser->setCity($ride->getCity());
-                    $position->setRide($ride);
-                }
-            } elseif ($criticalmapsUser->getRide()) {
-                $ride = $criticalmapsUser->getRide();
-
-                $position->setRide($ride);
             }
 
             $criticalmapsUser->setEndDateTime(new \DateTime());
@@ -89,23 +75,12 @@ class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
             $this->manager->persist($criticalmapsUser);
             $this->manager->persist($position);
 
-            if (!$ride) {
-                $this->output->writeln(sprintf(
-                    'Position [<info>%f</info>, <info>%f</info>] saved for <comment>%s</comment> in <comment>unknown city</comment>',
-                    $position->getLatitude(),
-                    $position->getLongitude(),
-                    $criticalmapsUser->getIdentifier()
-                ));
-            } else {
-                $this->output->writeln(sprintf(
-                    'Position [<info>%f</info>, <info>%f</info>] saved for <comment>%s</comment> in <comment>%s</comment>',
-                    $position->getLatitude(),
-                    $position->getLongitude(),
-                    $criticalmapsUser->getIdentifier(),
-                    $ride->getCity()->getCity()
-                ));
-            }
-
+            $this->output->writeln(sprintf(
+                'Position [<info>%f</info>, <info>%f</info>] saved for <comment>%s</comment>',
+                $position->getLatitude(),
+                $position->getLongitude(),
+                $criticalmapsUser->getIdentifier()
+            ));
         }
     }
 
