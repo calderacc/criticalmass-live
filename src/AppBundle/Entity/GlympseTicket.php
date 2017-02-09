@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CriticalmapsUserRepository")
  * @ORM\Table(name="glympse_ticket")
  */
-class Ticket
+class GlympseTicket
 {
     /**
      * @ORM\Id
