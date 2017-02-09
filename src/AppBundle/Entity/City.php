@@ -24,9 +24,8 @@ class City
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities")
-     * @ORM\JoinColumn(name="main_slug_id", referencedColumnName="id")
      * @JMS\Expose
+     * @JMS\Type("AppBundle\Entity\CitySlug")
      */
     protected $mainSlug;
 
@@ -344,11 +343,7 @@ class City
      */
     public function __construct()
     {
-        $this->rides = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->slugs = new \Doctrine\Common\Collections\ArrayCollection();
 
-        $this->archiveDateTime = new \DateTime();
-        $this->createdAt = new \DateTime();
     }
 
     /**
