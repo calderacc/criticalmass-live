@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ContentController extends AbstractController
+class ContentController extends AbstractContoller
 {
     use ViewStorageTrait;
 

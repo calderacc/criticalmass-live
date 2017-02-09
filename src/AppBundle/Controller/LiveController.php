@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use Caldera\Bundle\CalderaBundle\Entity\City;
 use Caldera\Bundle\CalderaBundle\Entity\Ride;
-use Caldera\Bundle\CriticalmassSiteBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 class LiveController extends AbstractController
