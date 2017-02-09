@@ -24,18 +24,6 @@ class City
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="cities")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Region", inversedBy="cities")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
-     */
-    protected $region;
-
-    /**
      * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities")
      * @ORM\JoinColumn(name="main_slug_id", referencedColumnName="id")
      * @JMS\Expose
@@ -89,32 +77,6 @@ class City
      * @JMS\Type("float")
      */
     protected $longitude = 0;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $enabled = true;
-
-    /**
-     * Array mit den Touren in dieser Stadt.
-     *
-     * @ORM\OneToMany(targetEntity="Ride", mappedBy="city")
-     */
-    protected $rides;
-
-    /**
-     * Array mit den Kommentaren zu dieser Stadt.
-     *
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="city")
-     */
-    protected $posts;
-
-    /**
-     * Array mit den Bildern zu dieser Stadt.
-     *
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="city")
-     */
-    protected $photos;
 
     /**
      * @JMS\Expose
