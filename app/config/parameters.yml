@@ -10,3 +10,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: e4a0dd2afbb2e6e5e3c3e67072e038f8ef39d7fb
+
+    criticalmass.api: http://criticalmass.cm/app_dev.php/api

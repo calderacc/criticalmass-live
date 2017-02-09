@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RefreshRideList extends ContainerAwareCommand
+class RefreshRideListCommand extends ContainerAwareCommand
 {
     /**
      * @var EntityManager $manager
@@ -26,42 +26,35 @@ class RefreshRideList extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('deathbike:refresh')
-            ->setDescription('Store death incidents')
-            ->addArgument(
-                'year',
-                InputArgument::REQUIRED,
-                'Year for incidents to import'
-            )
+            ->setName('live:refresh:ride')
+            ->setDescription('Store ride list')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $year = $input->getArgument('year');
-
-        $apiUrl = $this->getContainer()->getParameter('cycleways.api');
-        $apiUrl .= '?incident_type=deadly_accident&year=' . $year;
+        $apiUrl = $this->getContainer()->getParameter('criticalmass.api');
+        $apiUrl .= '/ride/list';
 
         $curl = new Curl();
         $curl->get($apiUrl);
 
         $jsonReponse = $curl->response;
-        $deathList = json_decode($jsonReponse);
+        $rideList = json_decode($jsonReponse);
 
         $entityList = [];
 
-        $progress = new ProgressBar($output, count($deathList));
+        $progress = new ProgressBar($output, count($rideList));
         $progress->start();
 
-        foreach ($deathList as $death) {
-            $entityList[] = json_encode($death);
+        foreach ($rideList as $ride) {
+            $entityList[] = json_encode($ride);
             $progress->advance();
         }
 
         $cache = new FilesystemAdapter();
 
-        $cacheItem = $cache->getItem('item-list-' . $year);
+        $cacheItem = $cache->getItem('ride-list');
         $cacheItem->set($entityList);
         $cache->save($cacheItem);
 
