@@ -2,12 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ride;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 abstract class AbstractController extends Controller
 {
-    protected function getEntityList(): array
+    protected function getRideList(): array
     {
         $cache = new FilesystemAdapter();
 
