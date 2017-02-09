@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
         $popularRides = $this->getRideRepository()->findPopularRides(15);
 
         return $this->render(
-            'CalderaCriticalmassLiveBundle:Default:index.html.twig',
+            'AppBundle:Default:index.html.twig',
             [
                 'rides' => $rides,
                 'popularRides' => $popularRides
