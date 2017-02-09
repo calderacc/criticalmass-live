@@ -118,6 +118,8 @@ class City
 
     /**
      * @ORM\OneToMany(targetEntity="CitySlug", mappedBy="city", cascade={"persist", "remove"})
+     * @JMS\Expose
+     * @JMS\Type("AppBundle\Entity\CitySlug")
      */
     protected $slugs;
 
