@@ -2,17 +2,11 @@
 
 namespace AppBundle\Command;
 
-use Caldera\Bundle\CalderaBundle\Entity\City;
-use Caldera\Bundle\CalderaBundle\Entity\CitySlug;
-use Caldera\Bundle\CalderaBundle\Entity\Ticket;
-use Caldera\Bundle\CriticalmassCoreBundle\Statistic\RideEstimate\RideEstimateService;
 use Doctrine\ORM\EntityManager;
 use PhpImap\IncomingMail;
 use PhpImap\Mailbox;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GlympseCollectMailsCommand extends ContainerAwareCommand
@@ -32,7 +26,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('criticalmass:glympse:collect-mails')
+            ->setName('live:glympse:mails')
             ->setDescription('');
     }
 
