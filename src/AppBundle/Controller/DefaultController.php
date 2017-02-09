@@ -14,7 +14,6 @@ class DefaultController extends AbstractController
             'AppBundle:Default:index.html.twig',
             [
                 'rides' => $rides,
-                'popularRides' => $popularRides
             ]
         );
     }
