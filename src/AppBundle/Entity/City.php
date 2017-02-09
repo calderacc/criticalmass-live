@@ -117,9 +117,8 @@ class City
     protected $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity="CitySlug", mappedBy="city", cascade={"persist", "remove"})
      * @JMS\Expose
-     * @JMS\Type("AppBundle\Entity\CitySlug")
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\CitySlug>")
      */
     protected $slugs;
 
