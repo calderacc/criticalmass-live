@@ -29,7 +29,8 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "curl/curl": "^1.6",
-        "php-imap/php-imap": "^2.0"
+        "php-imap/php-imap": "^2.0",
+        "jms/serializer-bundle": "^1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
