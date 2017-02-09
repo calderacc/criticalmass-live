@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\Entity;
+namespace AppBundle\Entity;
 
 use Caldera\Bundle\CalderaBundle\EntityInterface\ArchiveableInterface;
 use Caldera\Bundle\CalderaBundle\EntityInterface\BoardInterface;
@@ -21,7 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="city")
  * @JMS\ExclusionPolicy("all")
  */
-class City implements BoardInterface, ViewableInterface, ElasticSearchPinInterface, ArchiveableInterface
+class City
 {
     /**
      * Numerische ID der Stadt.

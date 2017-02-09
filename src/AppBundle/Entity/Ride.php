@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CalderaBundle\Entity;
+namespace AppBundle\Entity;
 
 use Caldera\Bundle\CalderaBundle\EntityInterface\ArchiveableInterface;
 use Caldera\Bundle\CalderaBundle\EntityInterface\ElasticSearchPinInterface;
@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Caldera\Bundle\CalderaBundle\Repository\RideRepository")
  * @JMS\ExclusionPolicy("all")
  */
-class Ride implements ParticipateableInterface, ViewableInterface, ElasticSearchPinInterface, ArchiveableInterface
+class Ride
 {
     /**
      * @ORM\Id
