@@ -33,9 +33,9 @@
                                             {% set latitude = ride.city.latitude %}
                                             {% set longitude = ride.city.longitude %}
                                         {% endif %}
-                                        <option data-city-slug="{{ ride.city.slug }}" data-latitude="{{ latitude }}"
+                                        <option data-latitude="{{ latitude }}"
                                                 data-longitude="{{ longitude }}">
-                                            {{ ride.city.city }}
+                                            {{ ride.city.title }}
                                         </option>
                                     {% endfor %}
                                 </select>
@@ -138,48 +138,6 @@
                 <p class="lead">
                     Hier sind die am häufigsten nachgefragten Städte:
                 </p>
-            </div>
-        </div>
-
-        {% set ridesPerCol = (popularRides | length / 3) | round(0, 'floor') %}
-
-        <div class="row hidden-xs-down">
-            <div class="col-sm-10 offset-sm-1">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <ul class="list-unstyled">
-                            {% for ride in popularRides|slice(0, ridesPerCol) %}
-                                <li>
-                                    <a href="{{ path('caldera_criticalmass_live_live_city', { citySlug: ride.city.slug }) }}">
-                                        {{ ride.city.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <ul class="list-unstyled">
-                            {% for ride in popularRides|slice(ridesPerCol, ridesPerCol) %}
-                                <li>
-                                    <a href="{{ path('caldera_criticalmass_live_live_city', { citySlug: ride.city.slug }) }}">
-                                        {{ ride.city.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <ul class="list-unstyled">
-                            {% for ride in popularRides|slice(2 * ridesPerCol, ridesPerCol + 1) %}
-                                <li>
-                                    <a href="{{ path('caldera_criticalmass_live_live_city', { citySlug: ride.city.slug }) }}">
-                                        {{ ride.city.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
