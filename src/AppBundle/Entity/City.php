@@ -13,23 +13,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Diese Entitaet repraesentiert eine Stadt als Organisationseinheit, unterhalb
- * derer einzelne Critical-Mass-Touren stattfinden.
- *
- * @ORM\Entity(repositoryClass="Caldera\Bundle\CalderaBundle\Repository\CityRepository")
- * @Vich\Uploadable
- * @ORM\Table(name="city")
  * @JMS\ExclusionPolicy("all")
  */
 class City
 {
     /**
-     * Numerische ID der Stadt.
-     *
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $id;
 
@@ -53,73 +43,50 @@ class City
     protected $mainSlug;
 
     /**
-     * Name der Stadt.
-     *
-     * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank()
      * @JMS\Expose
-     * @JMS\SerializedName("name")
+     * @JMS\Type("string")
      */
     protected $city;
 
     /**
-     * Bezeichnung der Critical Mass in dieser Stadt, etwa "Critical Mass Hamburg"
-     * oder "Critical Mass Bremen".
-     *
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $title;
 
     /**
-     * Kurze Beschreibung der Critical Mass dieser Stadt.
-     *
-     * @ORM\Column(type="text", nullable=true)
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $description;
 
     /**
-     * Adresse der Webseite der Critical Mass in dieser Stadt.
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $url;
 
     /**
-     * Adresse der Critical-Mass-Seite auf facebook dieser Stadt.
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $facebook;
 
     /**
-     * Adresse der Twitter-Seite der Critical Mass dieser Stadt.
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $twitter;
 
     /**
-     * Breitengrad der Stadt.
-     *
-     * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $latitude = 0;
 
     /**
-     * Längengrad der Stadt.
-     *
-     * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $longitude = 0;
 
@@ -256,8 +223,6 @@ class City
     protected $archiveMessage;
 
     /**
-     * @Vich\UploadableField(mapping="city_photo", fileNameProperty="imageName")
-     *
      * @var File
      */
     private $imageFile;
@@ -289,10 +254,8 @@ class City
     protected $enableBoard;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $timezone;
 

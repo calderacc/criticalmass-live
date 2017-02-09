@@ -11,126 +11,107 @@ use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="ride")
- * @ORM\Entity(repositoryClass="Caldera\Bundle\CalderaBundle\Repository\RideRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Ride
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="rides", fetch="LAZY")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City", inversedBy="rides", fetch="LAZY")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      * @JMS\Expose
+     * @JMS\Type("AppBundle\Entity\City")
      */
     protected $city;
 
     /**
-     * @ORM\OneToMany(targetEntity="Track", mappedBy="ride", fetch="LAZY")
      */
     protected $tracks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Subride", mappedBy="ride", fetch="LAZY")
      */
     protected $subrides;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $description;
 
     /**
-     * @ORM\Column(type="datetime")
      * @JMS\Expose
      */
     protected $dateTime;
 
     /**
-     * @ORM\Column(type="boolean")
      * @JMS\Expose
      */
     protected $hasTime;
 
     /**
-     * @ORM\Column(type="boolean")
      * @JMS\Expose
      */
     protected $hasLocation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $location;
 
     /**
-     * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $latitude;
 
     /**
-     * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $longitude;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
      * @JMS\Expose
      */
     protected $estimatedParticipants;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
      */
     protected $estimatedDistance;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
      */
     protected $estimatedDuration;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $facebook;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $twitter;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $url;
 
