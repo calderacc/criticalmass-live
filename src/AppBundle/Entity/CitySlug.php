@@ -12,56 +12,27 @@ class CitySlug
 {
     /**
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $id;
 
     /**
      * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $slug;
 
-    /**
-     */
-    protected $city;
-
-    /**
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     */
-    public function setCity(City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getSlug();
-    }
-
-    /**
-     */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     */
-    public function setSlug($slug)
+    public function setSlug(string $slug): CitySlug
     {
         $this->slug = $slug;
 
