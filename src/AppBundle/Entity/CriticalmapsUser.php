@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="criticalmaps_user")
- * @ORM\Entity(repositoryClass="Caldera\Bundle\CalderaBundle\Repository\CriticalmapsUserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CriticalmapsUserRepository")
  */
 class CriticalmapsUser
 {
