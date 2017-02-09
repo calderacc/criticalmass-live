@@ -18,18 +18,6 @@ class Ticket
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City", inversedBy="tickets")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
-     */
-    protected $city;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Ride", inversedBy="tickets")
-     * @ORM\JoinColumn(name="ride_id", referencedColumnName="id")
-     */
-    protected $ride;
-
-    /**
      * @ORM\Column(type="string", length=9, nullable=false)
      */
     protected $inviteId;
@@ -92,11 +80,6 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $exported = false;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
     protected $queried = false;
 
     public function __construct()
@@ -106,32 +89,16 @@ class Ticket
         $this->endDateTime = new \DateTime();
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Get inviteId
-     *
-     * @return string
-     */
     public function getInviteId()
     {
         return $this->inviteId;
     }
 
-    /**
-     * Set inviteId
-     *
-     * @param string $inviteId
-     * @return Ticket
-     */
     public function setInviteId($inviteId)
     {
         $this->inviteId = $inviteId;
@@ -139,34 +106,11 @@ class Ticket
         return $this;
     }
 
-    public function getRide()
-    {
-        return $this->ride;
-    }
-
-    public function setRide(Ride $ride = null)
-    {
-        $this->ride = $ride;
-
-        return $this;
-    }
-
-    /**
-     * Get counter
-     *
-     * @return integer
-     */
     public function getCounter()
     {
         return $this->counter;
     }
 
-    /**
-     * Set counter
-     *
-     * @param integer $counter
-     * @return Ticket
-     */
     public function setCounter($counter)
     {
         $this->counter = $counter;
@@ -174,22 +118,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get username
-     *
-     * @return string
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return Ticket
-     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -197,22 +130,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get colorRed
-     *
-     * @return integer
-     */
     public function getColorRed()
     {
         return $this->colorRed;
     }
 
-    /**
-     * Set colorRed
-     *
-     * @param integer $colorRed
-     * @return Ticket
-     */
     public function setColorRed($colorRed)
     {
         $this->colorRed = $colorRed;
@@ -220,22 +142,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get colorGreen
-     *
-     * @return integer
-     */
     public function getColorGreen()
     {
         return $this->colorGreen;
     }
 
-    /**
-     * Set colorGreen
-     *
-     * @param integer $colorGreen
-     * @return Ticket
-     */
     public function setColorGreen($colorGreen)
     {
         $this->colorGreen = $colorGreen;
@@ -243,22 +154,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get colorBlue
-     *
-     * @return integer
-     */
     public function getColorBlue()
     {
         return $this->colorBlue;
     }
 
-    /**
-     * Set colorBlue
-     *
-     * @param integer $colorBlue
-     * @return Ticket
-     */
     public function setColorBlue($colorBlue)
     {
         $this->colorBlue = $colorBlue;
@@ -266,22 +166,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get startDateTime
-     *
-     * @return \DateTime
-     */
     public function getStartDateTime()
     {
         return $this->startDateTime;
     }
 
-    /**
-     * Set startDateTime
-     *
-     * @param \DateTime $startDateTime
-     * @return Ticket
-     */
     public function setStartDateTime($startDateTime)
     {
         $this->startDateTime = $startDateTime;
@@ -289,22 +178,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get endDateTime
-     *
-     * @return \DateTime
-     */
     public function getEndDateTime()
     {
         return $this->endDateTime;
     }
 
-    /**
-     * Set endDateTime
-     *
-     * @param \DateTime $endDateTime
-     * @return Ticket
-     */
     public function setEndDateTime($endDateTime)
     {
         $this->endDateTime = $endDateTime;
@@ -312,22 +190,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get active
-     *
-     * @return boolean
-     */
     public function getActive()
     {
         return $this->active;
     }
 
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     * @return Ticket
-     */
     public function setActive($active)
     {
         $this->active = $active;
@@ -335,22 +202,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get message
-     *
-     * @return string
-     */
     public function getMessage()
     {
         return $this->message;
     }
 
-    /**
-     * Set message
-     *
-     * @param string $message
-     * @return Ticket
-     */
     public function setMessage($message)
     {
         $this->message = $message;
@@ -358,50 +214,11 @@ class Ticket
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getCity()->getCity() . ' ' . $this->getDisplayName();
-    }
-
-    /**
-     * Get city
-     *
-     * @return City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set city
-     *
-     * @param City $city
-     * @return Ticket
-     */
-    public function setCity(City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get displayName
-     *
-     * @return string
-     */
     public function getDisplayName()
     {
         return $this->displayName;
     }
 
-    /**
-     * Set displayName
-     *
-     * @param string $displayName
-     * @return Ticket
-     */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
@@ -409,37 +226,14 @@ class Ticket
         return $this;
     }
 
-    /**
-     * Get creationDateTime
-     *
-     * @return \DateTime
-     */
     public function getCreationDateTime()
     {
         return $this->creationDateTime;
     }
 
-    /**
-     * Set creationDateTime
-     *
-     * @param \DateTime $creationDateTime
-     * @return Ticket
-     */
     public function setCreationDateTime(\DateTime $creationDateTime)
     {
         $this->creationDateTime = $creationDateTime;
-
-        return $this;
-    }
-
-    public function getExported()
-    {
-        return $this->exported;
-    }
-
-    public function setExported($exported)
-    {
-        $this->exported = $exported;
 
         return $this;
     }

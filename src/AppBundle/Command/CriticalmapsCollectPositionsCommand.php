@@ -2,16 +2,13 @@
 
 namespace AppBundle\Command;
 
-use Caldera\Bundle\CalderaBundle\Entity\City;
-use Caldera\Bundle\CalderaBundle\Entity\CriticalmapsUser;
-use Caldera\Bundle\CalderaBundle\Entity\Position;
-use Caldera\Bundle\CalderaBundle\Entity\Ride;
+use AppBundle\Entity\CriticalmapsUser;
+use AppBundle\Entity\Position;
+use AppBundle\Entity\Ride;
 use Curl\Curl;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
@@ -31,7 +28,7 @@ class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('criticalmass:criticalmaps:collect-positions')
+            ->setName('live:positions:criticalmaps')
             ->setDescription('');
     }
 
@@ -176,7 +173,7 @@ class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
     protected function findCriticalmapsUserForIdentifier(string $identifier)
     {
         /** @var CriticalmapsUser $criticalmapsUser */
-        $criticalmapsUser = $this->manager->getRepository('CalderaBundle:CriticalmapsUser')->findOneByIdentifier($identifier);
+        $criticalmapsUser = $this->manager->getRepository('AppBundle:CriticalmapsUser')->findOneByIdentifier($identifier);
 
         return $criticalmapsUser;
     }

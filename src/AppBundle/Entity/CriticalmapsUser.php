@@ -18,17 +18,6 @@ class CriticalmapsUser
      */
     protected $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="City", inversedBy="criticalmaps_users")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
-     */
-    protected $city;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Ride", inversedBy="criticalmaps_users")
-     * @ORM\JoinColumn(name="ride_id", referencedColumnName="id")
-     */
-    protected $ride;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
@@ -65,11 +54,6 @@ class CriticalmapsUser
      */
     protected $endDateTime;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $exported = false;
-
     public function __construct()
     {
         $this->creationDateTime = new \DateTime();
@@ -81,32 +65,16 @@ class CriticalmapsUser
         $this->colorBlue = rand(0, 255);
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Get identifier
-     *
-     * @return string
-     */
     public function getIdentifier()
     {
         return $this->identifier;
     }
 
-    /**
-     * Set identifier
-     *
-     * @param string $identifier
-     * @return CriticalmapsUser
-     */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
@@ -114,22 +82,11 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get creationDateTime
-     *
-     * @return \DateTime
-     */
     public function getCreationDateTime()
     {
         return $this->creationDateTime;
     }
 
-    /**
-     * Set creationDateTime
-     *
-     * @param \DateTime $creationDateTime
-     * @return CriticalmapsUser
-     */
     public function setCreationDateTime($creationDateTime)
     {
         $this->creationDateTime = $creationDateTime;
@@ -137,22 +94,11 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get colorRed
-     *
-     * @return integer
-     */
     public function getColorRed()
     {
         return $this->colorRed;
     }
 
-    /**
-     * Set colorRed
-     *
-     * @param integer $colorRed
-     * @return CriticalmapsUser
-     */
     public function setColorRed($colorRed)
     {
         $this->colorRed = $colorRed;
@@ -160,22 +106,11 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get colorGreen
-     *
-     * @return integer
-     */
     public function getColorGreen()
     {
         return $this->colorGreen;
     }
 
-    /**
-     * Set colorGreen
-     *
-     * @param integer $colorGreen
-     * @return CriticalmapsUser
-     */
     public function setColorGreen($colorGreen)
     {
         $this->colorGreen = $colorGreen;
@@ -183,22 +118,11 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get colorBlue
-     *
-     * @return integer
-     */
     public function getColorBlue()
     {
         return $this->colorBlue;
     }
 
-    /**
-     * Set colorBlue
-     *
-     * @param integer $colorBlue
-     * @return CriticalmapsUser
-     */
     public function setColorBlue($colorBlue)
     {
         $this->colorBlue = $colorBlue;
@@ -206,22 +130,11 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get startDateTime
-     *
-     * @return \DateTime
-     */
     public function getStartDateTime()
     {
         return $this->startDateTime;
     }
 
-    /**
-     * Set startDateTime
-     *
-     * @param \DateTime $startDateTime
-     * @return CriticalmapsUser
-     */
     public function setStartDateTime($startDateTime)
     {
         $this->startDateTime = $startDateTime;
@@ -229,72 +142,14 @@ class CriticalmapsUser
         return $this;
     }
 
-    /**
-     * Get endDateTime
-     *
-     * @return \DateTime
-     */
     public function getEndDateTime()
     {
         return $this->endDateTime;
     }
 
-    /**
-     * Set endDateTime
-     *
-     * @param \DateTime $endDateTime
-     * @return CriticalmapsUser
-     */
     public function setEndDateTime($endDateTime)
     {
         $this->endDateTime = $endDateTime;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set city
-     *
-     * @param City $city
-     * @return CriticalmapsUser
-     */
-    public function setCity(City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getRide()
-    {
-        return $this->ride;
-    }
-
-    public function setRide(Ride $ride = null)
-    {
-        $this->ride = $ride;
-
-        return $this;
-    }
-
-    public function getExported()
-    {
-        return $this->exported;
-    }
-
-    public function setExported($exported)
-    {
-        $this->exported = $exported;
 
         return $this;
     }
