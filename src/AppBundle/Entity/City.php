@@ -35,6 +35,7 @@ class City
      * @JMS\Type("string")
      */
     protected $name;
+    protected $city;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -148,7 +149,6 @@ class City
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Type(type="int")
      * @JMS\Expose
      */
     protected $cityPopulation = 0;
@@ -183,7 +183,6 @@ class City
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank()
      */
     protected $archiveMessage;
 
