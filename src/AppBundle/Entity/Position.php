@@ -18,10 +18,10 @@ class Position
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ticket", inversedBy="positions")
-     * @ORM\JoinColumn(name="ticket_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="GlympseTicket", inversedBy="positions")
+     * @ORM\JoinColumn(name="glympse_ticket_id", referencedColumnName="id")
      */
-    protected $ticket;
+    protected $glympseTicket;
 
     /**
      * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
@@ -187,16 +187,16 @@ class Position
         return $this->creationDateTime;
     }
 
-    public function setTicket(Ticket $ticket = null)
+    public function setGlympseTicket(GlympseTicket $glympseTicket = null)
     {
-        $this->ticket = $ticket;
+        $this->glympseTicket = $glympseTicket;
 
         return $this;
     }
 
-    public function getTicket()
+    public function getGlympseTicket()
     {
-        return $this->ticket;
+        return $this->glympseTicket;
     }
 
     public function setCriticalmapsUser(CriticalmapsUser $criticalmapsUser)
