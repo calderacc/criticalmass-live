@@ -2,6 +2,9 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\City;
+use AppBundle\Entity\CitySlug;
+use AppBundle\Entity\GlympseTicket;
 use Doctrine\ORM\EntityManager;
 use PhpImap\IncomingMail;
 use PhpImap\Mailbox;
@@ -117,7 +120,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
     protected function saveInvitation(string $citySlug, string $invitationCode)
     {
         /** @var CitySlug $citySlug */
-        $citySlug = $this->manager->getRepository('CalderaBundle:CitySlug')->findOneBySlug($citySlug);
+        $citySlug = $this->manager->getRepository('AppBundle:CitySlug')->findOneBySlug($citySlug);
 
         if (!$citySlug) {
             return;
@@ -130,7 +133,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
             return;
         }
 
-        $ticket = new Ticket();
+        $ticket = new GlympseTicket();
 
         $ticket
             ->setCity($city)
