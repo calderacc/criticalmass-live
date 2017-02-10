@@ -13,11 +13,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * @ORM\Entity()
+ * @ORM\Table(name="city")
  * @JMS\ExclusionPolicy("all")
  */
 class City
 {
     /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
      * @JMS\Type("integer")
      */
@@ -30,54 +35,63 @@ class City
     protected $mainSlug;
 
     /**
+     * @ORM\Column(type="string", length=50)
      * @JMS\Expose
      * @JMS\Type("string")
      */
-    protected $city;
+    protected $name;
 
     /**
+     * @ORM\Column(type="string", length=100)
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $title;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $description;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $url;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $facebook;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $twitter;
 
     /**
+     * @ORM\Column(type="float")
      * @JMS\Expose
      * @JMS\Type("float")
      */
-    protected $latitude = 0;
+    protected $latitude = 0.0;
 
     /**
+     * @ORM\Column(type="float")
      * @JMS\Expose
      * @JMS\Type("float")
      */
-    protected $longitude = 0;
+    protected $longitude = 0.0;
 
     /**
+     * @ORM\OneToMany(targetEntity="CitySlug", mappedBy="city", cascade={"persist", "remove"})
      * @JMS\Expose
      * @JMS\Type("ArrayCollection<AppBundle\Entity\CitySlug>")
      */
@@ -173,12 +187,6 @@ class City
     protected $archiveDateTime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="archive_rides")
-     * @ORM\JoinColumn(name="archive_user_id", referencedColumnName="id")
-     */
-    protected $archiveUser;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank()
      */
@@ -252,45 +260,9 @@ class City
     protected $colorBlue = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Thread", inversedBy="cities")
-     * @ORM\JoinColumn(name="lastthread_id", referencedColumnName="id")
-     */
-    protected $lastThread;
-
-    /**
      * @ORM\Column(type="integer")
      */
     protected $views = 0;
-
-    public function setRegion(Region $region)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * @return CitySlug
@@ -362,9 +334,9 @@ class City
      * @param string $city
      * @return City
      */
-    public function setCity($city)
+    public function setName($name)
     {
-        $this->city = $city;
+        $this->name = $name;
 
         return $this;
     }
@@ -374,9 +346,9 @@ class City
      *
      * @return string
      */
-    public function getCity()
+    public function getName()
     {
-        return $this->city;
+        return $this->name;
     }
 
     /**
