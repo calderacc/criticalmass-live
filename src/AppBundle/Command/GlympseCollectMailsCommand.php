@@ -71,7 +71,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
 
     protected function catchUnreadMails()
     {
-        $unreadMailIds = $this->mailbox->searchMailbox('TO "hamburg@criticalmass.in"');
+        $unreadMailIds = $this->mailbox->searchMailbox('TO "hamburg@criticalmass.live"');
         $unreadMails = [];
 
         foreach ($unreadMailIds as $unreadMailId) {
@@ -98,9 +98,12 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
 
     protected function grepCitySlug(IncomingMail $mail)
     {
+        $domainName = $this->getContainer()->getParameter('glympse.mail.domain');
+        $domainName = str_replace('.', '\\.', $domainName);
+
         $toString = $mail->toString;
 
-        preg_match('/([a-z0-9\-]{3,})\@criticalmass\.in/i', $toString, $matches);
+        preg_match('/([a-z0-9\-]{3,})\@'.$domainName.'/i', $toString, $matches);
 
         $citySlug = null;
 
