@@ -40,6 +40,10 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
 
         $unreadMails = $this->catchUnreadMails();
 
+        if (0 === count($unreadMails)) {
+            $this->output->writeln('Sorry, there are no mails to catch.');
+        }
+
         foreach ($unreadMails as $unreadMail) {
             $invitationCode = $this->grepInvitationCode($unreadMail);
             $citySlug = $this->grepCitySlug($unreadMail);
@@ -48,7 +52,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
                 $this->output->writeln(sprintf('Found invitation code <comment>%s</comment> for <info>%s</info>', $invitationCode, $citySlug));
                 $this->saveInvitation($citySlug, $invitationCode);
             } else {
-                $this->output->writeln(sprintf('Could not grep city slug and invitation code from mail <info>%d</info>', $unreadMail->id));
+                $this->output->writeln(sprintf('Could not grep city slug or invitation code from mail <info>%d</info>', $unreadMail->id));
             }
         }
 
