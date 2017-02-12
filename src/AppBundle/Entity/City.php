@@ -531,59 +531,6 @@ class City
         return $this;
     }
 
-    public function getIsArchived()
-    {
-        return $this->isArchived;
-    }
-
-    public function setArchiveDateTime(\DateTime $archiveDateTime)
-    {
-        $this->archiveDateTime = $archiveDateTime;
-
-        return $this;
-    }
-
-    public function getArchiveDateTime()
-    {
-        return $this->archiveDateTime;
-    }
-
-    public function setArchiveParent($archiveParent)
-    {
-        $this->archiveParent = $archiveParent;
-
-        return $this;
-    }
-
-    public function getArchiveParent()
-    {
-        return $this->archiveParent;
-    }
-
-    public function setArchiveUser(User $archiveUser)
-    {
-        $this->archiveUser = $archiveUser;
-
-        return $this;
-    }
-
-    public function getArchiveUser()
-    {
-        return $this->archiveUser;
-    }
-
-    public function setArchiveMessage($archiveMessage)
-    {
-        $this->archiveMessage = $archiveMessage;
-
-        return $this;
-    }
-
-    public function getArchiveMessage()
-    {
-        return $this->archiveMessage;
-    }
-
     public function setIsStandardableLocation($isStandardableLocation)
     {
         $this->isStandardableLocation = $isStandardableLocation;
