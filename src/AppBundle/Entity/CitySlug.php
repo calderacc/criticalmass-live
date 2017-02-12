@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="cityslug")
+ * @ORM\Table(name="city_slug")
  * @JMS\ExclusionPolicy("all")
  */
 class CitySlug
