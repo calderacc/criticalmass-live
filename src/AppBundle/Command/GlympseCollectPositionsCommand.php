@@ -2,22 +2,17 @@
 
 namespace AppBundle\Command;
 
-use Caldera\Bundle\CalderaBundle\Entity\City;
-use Caldera\Bundle\CalderaBundle\Entity\CitySlug;
-use Caldera\Bundle\CalderaBundle\Entity\Ticket;
-use Caldera\Bundle\CriticalmassCoreBundle\Glympse\Exception\GlympseApiBrokenException;
-use Caldera\Bundle\CriticalmassCoreBundle\Glympse\Exception\GlympseApiErrorException;
-use Caldera\Bundle\CriticalmassCoreBundle\Glympse\Exception\GlympseException;
-use Caldera\Bundle\CriticalmassCoreBundle\Glympse\Exception\GlympseInviteUnknownException;
-use Caldera\Bundle\CriticalmassCoreBundle\Statistic\RideEstimate\RideEstimateService;
+use AppBundle\Entity\GlympseTicket;
+use AppBundle\Entity\Position;
+use AppBundle\Glympse\Exception\GlympseApiBrokenException;
+use AppBundle\Glympse\Exception\GlympseApiErrorException;
+use AppBundle\Glympse\Exception\GlympseException;
+use AppBundle\Glympse\Exception\GlympseInviteUnknownException;
 use Curl\Curl;
 use Doctrine\ORM\EntityManager;
-use PhpImap\IncomingMail;
 use PhpImap\Mailbox;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GlympseCollectPositionsCommand extends ContainerAwareCommand
@@ -40,7 +35,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('criticalmass:glympse:collect-positions')
+            ->setName('live:positions:glympse')
             ->setDescription('');
     }
 
@@ -54,7 +49,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
 
         $tickets = $this->getTicketsToQuery();
 
-        /** @var Ticket $ticket */
+        /** @var GlympseTicket $ticket */
         foreach ($tickets as $ticket) {
             $this->output->writeln(sprintf('Query ticket <info>#%d</info>', $ticket->getId()));
 
@@ -86,13 +81,13 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
                 'password' => $password
             ]);
         } catch (\Exception $exception) {
-            throw new GlympseApiBrokenException($curl->errorMessage);
+            throw new GlympseApiBrokenException($curl->error_message);
         }
 
-        $response = $curl->response;
+        $response = json_decode($curl->response);
 
         if (!$response || isset($response->error)) {
-            throw new GlympseApiBrokenException($curl->errorMessage);
+            throw new GlympseApiBrokenException($curl->error_message);
         }
 
         if ($response->result == 'failure') {
@@ -101,8 +96,8 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
 
         $accessToken = null;
 
-        if ($curl->response->response->access_token) {
-            $accessToken = $curl->response->response->access_token;
+        if ($response->response->access_token) {
+            $accessToken = $response->response->access_token;
         }
 
         return $accessToken;
@@ -111,17 +106,23 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
 
     protected function getTicketsToQuery()
     {
-        return $this->manager->getRepository('CalderaBundle:Ticket')->findBy(
+        return $this->manager->getRepository('AppBundle:GlympseTicket')->findBy(
             ['queried' => false]
         );
     }
 
-    protected function saveNewPositions(Ticket $ticket)
+    protected function saveNewPositions(GlympseTicket $ticket)
     {
-        var_dump($this->queryTicket($ticket));
+        $queryResult = $this->queryTicket($ticket);
+
+        $positionList = $this->extractPositionList($queryResult->location);
+
+        $this->persistPositionList($positionList);
+
+        $ticket->increaseCounter(count($positionList));
     }
 
-    protected function queryTicket(Ticket $ticket)
+    protected function queryTicket(GlympseTicket $ticket)
     {
         $hostname = $this->getContainer()->getParameter('glympse.api.hostname');
 
@@ -132,17 +133,17 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         try {
             $curl->get($invitesUrl, [
                 'oauth_token' => $this->accessToken,
-                'properties' => true,
+                'properties' => 'true',
                 'next' => $ticket->getCounter()
             ]);
         } catch (\Exception $exception) {
-            throw new GlympseApiBrokenException($curl->errorMessage);
+            throw new GlympseApiBrokenException($curl->error_message);
         }
 
-        $response = $curl->response;
+        $response = json_decode($curl->response);
 
         if (!$response || isset($response->error)) {
-            throw new GlympseApiBrokenException($curl->errorMessage);
+            throw new GlympseApiBrokenException($curl->error_message);
         }
 
         if ($response->result == 'failure' && $response->meta->error == 'invite_code') {
@@ -151,6 +152,41 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
             throw new GlympseApiErrorException($response->meta->error_detail);
         }
 
-        return $curl->response->response->properties;
+        return $response->response;
+    }
+
+    protected function extractPositionList(array $locations): array
+    {
+        $positionList = [];
+
+        $currentLatitude = null;
+        $currentLongitude = null;
+
+        foreach ($locations as $location) {
+            if (!$currentLatitude || !$currentLongitude) {
+                $currentLatitude = $location[1];
+                $currentLongitude = $location[2];
+            } else {
+                $currentLatitude += $location[1];
+                $currentLongitude -= $location[2];
+            }
+
+            $position = new Position();
+            $position
+                ->setLatitude($currentLatitude / 1000000)
+                ->setLongitude($currentLongitude / 1000000)
+            ;
+
+            $positionList[] = $position;
+        }
+
+        return $positionList;
+    }
+
+    protected function persistPositionList(array $positionList)
+    {
+        foreach ($positionList as $position) {
+            $this->manager->persist($position);
+        }
     }
 }
