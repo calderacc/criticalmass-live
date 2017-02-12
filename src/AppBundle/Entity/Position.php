@@ -74,6 +74,11 @@ class Position
      */
     protected $creationDateTime;
 
+    public function __construct()
+    {
+        $this->creationDateTime = new \DateTime();
+    }
+
     public function getId()
     {
         return $this->id;
