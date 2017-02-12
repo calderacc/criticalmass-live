@@ -18,6 +18,12 @@ class GlympseTicket
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="glympse_tickets")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    protected $city;
+
+    /**
      * @ORM\Column(type="string", length=9, nullable=false)
      */
     protected $inviteId;
@@ -92,6 +98,18 @@ class GlympseTicket
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setCity(City $city): GlympseTicket
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCity(): City
+    {
+        return $this->city;
     }
 
     public function getInviteId()
