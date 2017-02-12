@@ -115,11 +115,13 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
     {
         $queryResult = $this->queryTicket($ticket);
 
-        $positionList = $this->extractPositionList($queryResult->location);
+        if (isset($queryResult->location) && $queryResult->location) {
+            $positionList = $this->extractPositionList($queryResult->location);
 
-        $this->persistPositionList($positionList);
+            $this->persistPositionList($positionList);
+        }
 
-        $ticket->increaseCounter(count($positionList));
+        $ticket->setCounter($queryResult->next);
     }
 
     protected function queryTicket(GlympseTicket $ticket)
@@ -131,11 +133,14 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         $curl = new Curl();
 
         try {
-            $curl->get($invitesUrl, [
+            $queryData = [
                 'oauth_token' => $this->accessToken,
                 'properties' => 'true',
                 'next' => $ticket->getCounter()
-            ]);
+            ];
+
+            var_dump($queryData);
+            $curl->get($invitesUrl, $queryData);
         } catch (\Exception $exception) {
             throw new GlympseApiBrokenException($curl->error_message);
         }
@@ -155,7 +160,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         return $response->response;
     }
 
-    protected function extractPositionList(array $locations): array
+    protected function extractPositionList(array $locations = []): array
     {
         $positionList = [];
 
