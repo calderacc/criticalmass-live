@@ -136,6 +136,11 @@ class GlympseTicket
         return $this;
     }
 
+    public function increaseCounter(int $increasement = 1)
+    {
+        $this->counter += $increasement;
+    }
+
     public function getUsername()
     {
         return $this->username;
