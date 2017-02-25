@@ -47,11 +47,13 @@ class RefreshRideListCommand extends ContainerAwareCommand
         foreach ($rideList as $json) {
             $ride = $serializer->deserialize(json_encode($json), 'AppBundle\Entity\Ride', 'json');
 
-            var_dump($json, $ride);
-            $manager->persist($ride);
+            if ($manager->getUnitOfWork()->isEntityScheduled($ride)) {
+                $manager->merge($ride);
+            } else {
+                $manager->persist($ride);
+            }
 
             $progress->advance();
-            die;
         }
 
         $manager->flush();
