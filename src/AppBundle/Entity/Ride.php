@@ -15,7 +15,7 @@ class Ride
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      * @JMS\Expose
      * @JMS\SerializedName("id")
      * @JMS\Groups({"ride-list"})
@@ -187,6 +187,11 @@ class Ride
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

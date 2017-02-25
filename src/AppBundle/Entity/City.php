@@ -17,7 +17,7 @@ class City
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      * @JMS\Expose
      * @JMS\SerializedName("id")
      * @JMS\Type("integer")
@@ -235,6 +235,12 @@ class City
     {
         return $this->id;
     }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
     public function getMainSlug(): CitySlug
     {

@@ -15,7 +15,7 @@ class CitySlug
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      * @JMS\Expose
      * @JMS\SerializedName("id")
      * @JMS\Type("integer")
@@ -33,12 +33,20 @@ class CitySlug
     /**
      * @ORM\ManyToOne(targetEntity="City", inversedBy="slugs")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @JMS\Expose
+     * @JMS\SerializedName("city")
+     * @JMS\Type("AppBundle\Entity\City")
      */
     protected $city;
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getSlug(): string
