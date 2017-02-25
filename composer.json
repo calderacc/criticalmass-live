@@ -31,7 +31,8 @@
         "curl/curl": "^1.6",
         "php-imap/php-imap": "^2.0",
         "jms/serializer-bundle": "^1.1",
-        "nelmio/api-doc-bundle": "^2.13"
+        "nelmio/api-doc-bundle": "^2.13",
+        "friendsofsymfony/jsrouting-bundle": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
