@@ -17,6 +17,7 @@ class CitySlug
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\SerializedName("id")
      * @JMS\Type("integer")
      */
     protected $id;
@@ -24,6 +25,7 @@ class CitySlug
     /**
      * @ORM\Column(type="string", length=50)
      * @JMS\Expose
+     * @JMS\SerializedName("slug")
      * @JMS\Type("string")
      */
     protected $slug;

@@ -19,12 +19,14 @@ class City
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\SerializedName("id")
      * @JMS\Type("integer")
      */
     protected $id;
 
     /**
      * @JMS\Expose
+     * @JMS\SerializedName("mainSlug")
      * @JMS\Type("AppBundle\Entity\CitySlug")
      */
     protected $mainSlug;
@@ -32,14 +34,15 @@ class City
     /**
      * @ORM\Column(type="string", length=50)
      * @JMS\Expose
+     * @JMS\SerializedName("name")
      * @JMS\Type("string")
      */
     protected $name;
-    protected $city;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @JMS\Expose
+     * @JMS\SerializedName("title")
      * @JMS\Type("string")
      */
     protected $title;
@@ -47,6 +50,7 @@ class City
     /**
      * @ORM\Column(type="text", nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("description")
      * @JMS\Type("string")
      */
     protected $description;
@@ -54,6 +58,7 @@ class City
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("url")
      * @JMS\Type("string")
      */
     protected $url;
@@ -61,6 +66,7 @@ class City
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("facebook")
      * @JMS\Type("string")
      */
     protected $facebook;
@@ -68,6 +74,7 @@ class City
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("twitter")
      * @JMS\Type("string")
      */
     protected $twitter;
@@ -75,6 +82,7 @@ class City
     /**
      * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\SerializedName("latitude")
      * @JMS\Type("float")
      */
     protected $latitude = 0.0;
@@ -82,6 +90,7 @@ class City
     /**
      * @ORM\Column(type="float")
      * @JMS\Expose
+     * @JMS\SerializedName("longitude")
      * @JMS\Type("float")
      */
     protected $longitude = 0.0;
@@ -89,18 +98,21 @@ class City
     /**
      * @ORM\OneToMany(targetEntity="CitySlug", mappedBy="city", cascade={"persist", "remove"})
      * @JMS\Expose
+     * @JMS\SerializedName("slugs")
      * @JMS\Type("ArrayCollection<AppBundle\Entity\CitySlug>")
      */
     protected $slugs;
 
     /**
      * @ORM\Column(type="boolean")
+     * @JMS\SerializedName("isStandardable")
      * @JMS\Expose
      */
     protected $isStandardable = false;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @JMS\SerializedName("standardDayOfWeek")
      * @JMS\Expose
      */
     protected $standardDayOfWeek;
