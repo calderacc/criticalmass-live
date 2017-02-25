@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ride;
+use AppBundle\Repository\RideRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
@@ -10,24 +11,11 @@ abstract class AbstractController extends Controller
 {
     protected function getRideList(): array
     {
-        $cache = new FilesystemAdapter();
+        return $this->getRideRepository()->findCurrentRides();
+    }
 
-        $cacheItem = $cache->getItem('ride-list');
-
-        if (!$cacheItem->isHit()) {
-            return [];
-        }
-
-        $jsonList = $cacheItem->get();
-
-        $entityList = [];
-
-        foreach ($jsonList as $json) {
-            /** @var Ride $entity */
-            $entity = $this->get('jms_serializer')->deserialize($json, 'AppBundle\Entity\Ride', 'json');
-            array_unshift($entityList, $entity);
-        }
-
-        return $entityList;
+    protected function getRideRepository(): RideRepository
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Ride');
     }
 }

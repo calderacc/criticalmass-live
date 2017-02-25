@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Table(name="ride")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RideRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Ride
