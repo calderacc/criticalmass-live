@@ -63,9 +63,10 @@
 
 {% include('AppBundle:Includes:_legalModal.html.twig') %}
 
-<script src="{{ asset('bundles/app/js/external/jquery/jquery-3.1.0.min.js') }}"></script>
-<script src="{{ asset('bundles/app/js/external/bootstrap4/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/bootstrap/bootstrap.min.js') }}"></script>
 
+{% block scripts %}{% endblock %}
 </body>
 </html>
 
