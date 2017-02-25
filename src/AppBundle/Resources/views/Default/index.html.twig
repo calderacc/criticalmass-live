@@ -34,7 +34,8 @@
                                             {% set longitude = ride.city.longitude %}
                                         {% endif %}
                                         <option data-latitude="{{ latitude }}"
-                                                data-longitude="{{ longitude }}">
+                                                data-longitude="{{ longitude }}"
+                                                data-city-slug="{{ ride.city.slug.slug }}">
                                             {{ ride.city.title }}
                                         </option>
                                     {% endfor %}
