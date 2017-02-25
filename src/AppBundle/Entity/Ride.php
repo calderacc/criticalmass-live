@@ -17,6 +17,7 @@ class Ride
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\SerializedName("id")
      * @JMS\Groups({"ride-list"})
      * @JMS\Type("integer")
      */
@@ -26,6 +27,7 @@ class Ride
      * @ORM\ManyToOne(targetEntity="City", inversedBy="rides", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      * @JMS\Groups({"ride-list"})
+     * @JMS\SerializedName("city")
      * @JMS\Expose
      */
     protected $city;
@@ -34,6 +36,7 @@ class Ride
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("title")
      * @JMS\Type("string")
      */
     protected $title;
@@ -42,6 +45,7 @@ class Ride
      * @ORM\Column(type="text", nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("description")
      * @JMS\Type("string")
      */
     protected $description;
@@ -51,6 +55,7 @@ class Ride
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("DateTime")
+     * @JMS\SerializedName("dateTime")
      */
     protected $dateTime;
 
@@ -59,6 +64,7 @@ class Ride
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("boolean")
+     * @JMS\SerializedName("hasTime")
      */
     protected $hasTime;
 
@@ -66,6 +72,7 @@ class Ride
      * @ORM\Column(type="boolean")
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("hasLocation")
      * @JMS\Type("boolean")
      */
     protected $hasLocation;
@@ -74,6 +81,7 @@ class Ride
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("location")
      * @JMS\Type("string")
      */
     protected $location;
@@ -82,6 +90,7 @@ class Ride
      * @ORM\Column(type="float")
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("latitude")
      * @JMS\Type("float")
      */
     protected $latitude;
@@ -90,6 +99,7 @@ class Ride
      * @ORM\Column(type="float")
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("longitude")
      * @JMS\Type("float")
      */
     protected $longitude;
@@ -97,6 +107,7 @@ class Ride
     /**
      * @ORM\Column(type="smallint", nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("estimatedParticipants")
      * @JMS\Type("integer")
      */
     protected $estimatedParticipants;
@@ -104,6 +115,7 @@ class Ride
     /**
      * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("estimatedDistance")
      * @JMS\Type("float")
      */
     protected $estimatedDistance;
@@ -111,6 +123,7 @@ class Ride
     /**
      * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
+     * @JMS\SerializedName("estimatedDuration")
      * @JMS\Type("float")
      */
     protected $estimatedDuration;
@@ -119,6 +132,7 @@ class Ride
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("facebook")
      * @JMS\Type("string")
      */
     protected $facebook;
@@ -127,6 +141,7 @@ class Ride
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("twitter")
      * @JMS\Type("string")
      */
     protected $twitter;
@@ -135,6 +150,7 @@ class Ride
      * @ORM\Column(type="string", length=255, nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\SerializedName("url")
      * @JMS\Type("string")
      */
     protected $url;
@@ -142,6 +158,7 @@ class Ride
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\SerializedName("participationsNumberYes")
      * @JMS\Type("integer")
      */
     protected $participationsNumberYes = 0;
@@ -149,6 +166,7 @@ class Ride
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\SerializedName("participationsNumberMaybe")
      * @JMS\Type("integer")
      */
     protected $participationsNumberMaybe = 0;
@@ -156,6 +174,7 @@ class Ride
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\SerializedName("participationsNumberNo")
      * @JMS\Type("integer")
      */
     protected $participationsNumberNo = 0;
