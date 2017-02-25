@@ -2,217 +2,163 @@
 
 namespace AppBundle\Entity;
 
-use Caldera\Bundle\CalderaBundle\EntityInterface\ArchiveableInterface;
-use Caldera\Bundle\CalderaBundle\EntityInterface\ElasticSearchPinInterface;
-use Caldera\Bundle\CalderaBundle\EntityInterface\ParticipateableInterface;
-use Caldera\Bundle\CalderaBundle\EntityInterface\ViewableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ORM\Table(name="ride")
+ * @ORM\Entity()
  * @JMS\ExclusionPolicy("all")
  */
 class Ride
 {
     /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @JMS\Expose
+     * @JMS\Groups({"ride-list"})
      * @JMS\Type("integer")
      */
     protected $id;
 
     /**
-     */
-    protected $user;
-
-    /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="rides", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
-     * @JMS\Type("AppBundle\Entity\City")
      */
     protected $city;
 
     /**
-     */
-    protected $tracks;
-
-    /**
-     */
-    protected $subrides;
-
-    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @JMS\Groups({"ride-list"})
+     * @JMS\Expose
+     * @JMS\Type("string")
      */
     protected $title;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $description;
 
     /**
+     * @ORM\Column(type="datetime")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\Type("DateTime")
      */
     protected $dateTime;
 
     /**
+     * @ORM\Column(type="boolean")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     protected $hasTime;
 
     /**
+     * @ORM\Column(type="boolean")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
+     * @JMS\Type("boolean")
      */
     protected $hasLocation;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $location;
 
     /**
+     * @ORM\Column(type="float")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("float")
      */
     protected $latitude;
 
     /**
+     * @ORM\Column(type="float")
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("float")
      */
     protected $longitude;
 
     /**
+     * @ORM\Column(type="smallint", nullable=true)
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $estimatedParticipants;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $estimatedDistance;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
      * @JMS\Expose
+     * @JMS\Type("float")
      */
     protected $estimatedDuration;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $facebook;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $twitter;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\Type("string")
      */
     protected $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ride", inversedBy="archiveRides", fetch="LAZY")
-     * @ORM\JoinColumn(name="archive_parent_id", referencedColumnName="id")
-     */
-    protected $archiveParent;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Ride", mappedBy="archiveParent", fetch="LAZY")
-     */
-    protected $archiveRides;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $isArchived = false;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $archiveDateTime;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="archive_rides", fetch="LAZY")
-     * @ORM\JoinColumn(name="archive_user_id", referencedColumnName="id")
-     */
-    protected $archiveUser;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank()
-     */
-    protected $archiveMessage;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="ride", fetch="LAZY")
-     */
-    protected $posts;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="ride", fetch="LAZY")
-     */
-    protected $photos;
-
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    protected $createdAt;
-
-    /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $participationsNumberYes = 0;
 
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $participationsNumberMaybe = 0;
 
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     * @JMS\Type("integer")
      */
     protected $participationsNumberNo = 0;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Participation", mappedBy="ride", fetch="LAZY")
-     */
-    protected $participations;
-
-    /**
-     * @ORM\OneToMany(targetEntity="RideEstimate", mappedBy="ride", fetch="LAZY")
-     */
-    protected $estimates;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $views = 0;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="featuredRides", fetch="LAZY")
-     * @ORM\JoinColumn(name="featured_photo", referencedColumnName="id")
-     */
-    protected $featuredPhoto;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $restrictedPhotoAccess = false;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Weather", mappedBy="ride", fetch="LAZY")
-     * @ORM\OrderBy({"creationDateTime" = "DESC"})
-     */
-    protected $weathers;
 
     /**
      * Get id
@@ -248,7 +194,7 @@ class Ride
      * @param \DateTime $dateTime
      * @return Ride
      */
-    public function setDateTime($dateTime)
+    public function setDateTime(\DateTime $dateTime)
     {
         $this->dateTime = $dateTime;
 
@@ -269,14 +215,14 @@ class Ride
     {
         return $this->dateTime->format('Y-m-d');
     }
-    
+
     /**
      * Set hasTime
      *
      * @param boolean $hasTime
      * @return Ride
      */
-    public function setHasTime($hasTime)
+    public function setHasTime(bool $hasTime)
     {
         $this->hasTime = $hasTime;
 

@@ -7,17 +7,11 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class RefreshRideListCommand extends ContainerAwareCommand
 {
-    /**
-     * @var EntityManager $manager
-     */
-    protected $manager;
-
     /**
      * @var OutputInterface $output
      */
@@ -33,6 +27,11 @@ class RefreshRideListCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $serializer = $this->getContainer()->get('jms_serializer');
+
+        /** @var EntityManager $manager */
+        $manager = $this->getContainer()->get('doctrine')->getEntityManager();
+
         $apiUrl = $this->getContainer()->getParameter('criticalmass.api');
         $apiUrl .= '/ride/list';
 
@@ -42,22 +41,19 @@ class RefreshRideListCommand extends ContainerAwareCommand
         $jsonReponse = $curl->response;
         $rideList = json_decode($jsonReponse);
 
-        $entityList = [];
-
         $progress = new ProgressBar($output, count($rideList));
         $progress->start();
 
-        foreach ($rideList as $ride) {
-            $entityList[] = json_encode($ride);
+        foreach ($rideList as $json) {
+            $ride = $serializer->deserialize(json_encode($json), 'AppBundle\Entity\Ride', 'json');
+
+            var_dump($json, $ride);
+            $manager->persist($ride);
+
             $progress->advance();
+            die;
         }
 
-        $cache = new FilesystemAdapter();
-
-        $cacheItem = $cache->getItem('ride-list');
-        $cacheItem->set($entityList);
-        $cache->save($cacheItem);
-
-        $progress->finish();
+        $manager->flush();
     }
 }

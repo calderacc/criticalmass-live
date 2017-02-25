@@ -166,51 +166,12 @@ class City
     protected $longDescription;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City", inversedBy="archive_cities")
-     * @ORM\JoinColumn(name="archive_parent_id", referencedColumnName="id")
-     */
-    protected $archiveParent;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $isArchived = false;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $archiveDateTime;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $archiveMessage;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
     private $imageName;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $enableBoard;
 
     /**
      * @JMS\Expose
