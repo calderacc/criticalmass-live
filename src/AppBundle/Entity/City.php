@@ -25,11 +25,10 @@ class City
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities")
-     * @ORM\JoinColumn(name="main_slug_id", referencedColumnName="id")
      * @JMS\Expose
      * @JMS\SerializedName("mainSlug")
      * @JMS\Type("AppBundle\Entity\CitySlug")
+     * @JMS\Accessor(setter="setMainSlug")
      */
     protected $mainSlug;
 
@@ -102,6 +101,7 @@ class City
      * @JMS\Expose
      * @JMS\SerializedName("slugs")
      * @JMS\Type("ArrayCollection<AppBundle\Entity\CitySlug>")
+     * @JMS\Accessor(setter="setSlugs")
      */
     protected $slugs;
 
@@ -356,6 +356,8 @@ class City
             $this->mainSlug = $slug;
         }
 
+        $slug->setCity($this);
+
         $this->slugs->add($slug);
 
         return $this;
@@ -371,6 +373,17 @@ class City
     public function getSlugs(): Collection
     {
         return $this->slugs;
+    }
+    
+    public function setSlugs(Collection $slugs): City
+    {
+        foreach ($slugs as $slug) {
+            $slug->setCity($this);
+        }
+
+        $this->slugs = $slugs;
+        
+        return $this;
     }
 
     public function setDescription(string $description): City
