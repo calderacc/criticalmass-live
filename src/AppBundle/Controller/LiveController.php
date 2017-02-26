@@ -2,39 +2,23 @@
 
 namespace AppBundle\Controller;
 
-use Caldera\Bundle\CalderaBundle\Entity\City;
-use Caldera\Bundle\CalderaBundle\Entity\Ride;
+use AppBundle\Entity\Ride;
 use Symfony\Component\HttpFoundation\Request;
 
 class LiveController extends AbstractController
 {
     public function cityAction(Request $request, $citySlug)
     {
-        /**
-         * @var City $city
-         */
-        $city = $this->getCheckedCity($citySlug);
+        $city = $this->getCityBySlug($citySlug);
 
-        /**
-         * @var Ride $ride
-         */
+        /** @var Ride $ride */
         $ride = $this->getRideRepository()->findCurrentRideForCity($city);
-
-        $events = [];
-
-        if ($ride) {
-            $events = $this->getEventRepository()->findEventsForRide($ride);
-        }
-
-        $this->getMetadata()
-            ->setDescription('Live dabei: Schau dir an, wo sich die Critical Mass in ' . $city->getCity() . ' gerade befindet!');
 
         return $this->render(
             'AppBundle:Default:live.html.twig',
             array(
                 'ride' => $ride,
                 'city' => $city,
-                'events' => $events
             )
         );
     }

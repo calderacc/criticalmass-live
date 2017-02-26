@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\City;
+use AppBundle\Entity\Ride;
 use Doctrine\ORM\EntityRepository;
 
 class RideRepository extends EntityRepository
@@ -27,5 +29,22 @@ class RideRepository extends EntityRepository
         $query = $builder->getQuery();
 
         return $query->getResult();
+    }
+
+    public function findCurrentRideForCity(City $city): Ride
+    {
+        $builder = $this->createQueryBuilder('ride');
+
+        $builder->select('ride');
+
+        $builder->where($builder->expr()->eq('ride.city', $city->getId()));
+
+        $builder->addOrderBy('ride.dateTime', 'ASC');
+
+        $builder->setMaxResults(1);
+
+        $query = $builder->getQuery();
+
+        return $query->getOneOrNullResult();
     }
 }
