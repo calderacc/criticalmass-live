@@ -1,6 +1,5 @@
-define(['CriticalService', 'Map', 'Container', 'CityEntity', 'LiveRideEntity', 'NoLocationRideEntity', 'EventEntity', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash', 'Modal', 'CloseModalButton'], function (CriticalService) {
+define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash', 'Modal', 'CloseModalButton'], function () {
     LivePage = function (context, options) {
-        this._CriticalService = CriticalService;
 
         this._options = options;
 
@@ -14,7 +13,6 @@ define(['CriticalService', 'Map', 'Container', 'CityEntity', 'LiveRideEntity', '
         this._startLive();
     };
 
-    LivePage.prototype._CriticalService = null;
     LivePage.prototype._options = null;
     LivePage.prototype._map = null;
     LivePage.prototype._hash = null;
@@ -42,16 +40,12 @@ define(['CriticalService', 'Map', 'Container', 'CityEntity', 'LiveRideEntity', '
         this._map = new Map('map', []);
 
         this._hash = new L.Hash(this._map.map);
-
-        this._CriticalService.setMap(this._map);
     };
 
     LivePage.prototype._initLive = function () {
         this._mapPositions = new MapPositions(null, this._options);
 
         this._mapPositions.addToControl(this._layers, 'Teilnehmer');
-
-        this._CriticalService.setMapPositions(this._mapPositions);
     };
 
     LivePage.prototype._initLayers = function () {
