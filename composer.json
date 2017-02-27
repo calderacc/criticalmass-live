@@ -34,7 +34,8 @@
         "nelmio/api-doc-bundle": "^2.13",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "friendsofsymfony/rest-bundle": "^2.1",
-        "friendsofsymfony/elastica-bundle": "^3.2"
+        "friendsofsymfony/elastica-bundle": "^3.2",
+        "calderacc/geobasic": "^0.1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
