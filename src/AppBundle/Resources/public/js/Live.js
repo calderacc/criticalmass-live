@@ -11,9 +11,8 @@ Live.loadModule = function(name, context, options, callback) {
 };
 
 require.config({
+    baseUrl: '/bundles/app/js/modules',
     paths:
     {
-        "LivePage": "/bundles/app/js/modules/LivePage",
-        "LiveFrontPage": "/bundles/app/js/modules/LiveFrontPage"
     },
 });
