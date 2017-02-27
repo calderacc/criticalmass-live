@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Manager\PositionManager;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,5 +29,10 @@ class ApiController extends FOSRestController
             ->setStatusCode(200);
 
         return $this->handleView($view);
+    }
+
+    protected function getPositionManager(): PositionManager
+    {
+        return $this->get('criticalmass.manager.incident_manager');
     }
 }

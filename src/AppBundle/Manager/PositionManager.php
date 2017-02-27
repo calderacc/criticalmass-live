@@ -2,24 +2,22 @@
 
 namespace AppBundle\Manager;
 
-use AppBundle\Entity\City;
-use AppBundle\Manager\AbstractElasticManager;
-use AppBundle\Repository\IncidentRepository;
 use Caldera\GeoBasic\Bounds\Bounds;
+use Doctrine\Common\Persistence\ObjectRepository;
 
-class IncidentManager extends AbstractElasticManager
+class PositionManager extends AbstractElasticManager
 {
-    /** @var IncidentRepository $incidentRepository */
-    protected $incidentRepository = null;
+    /** @var ObjectRepository $positionRepository */
+    protected $positionRepository = null;
 
     public function __construct($doctrine, $elasticIndex)
     {
         parent::__construct($doctrine, $elasticIndex);
 
-        $this->incidentRepository = $this->doctrine->getRepository('AppBundle:Incident');
+        $this->positionRepository = $this->doctrine->getRepository('AppBundle:Position');
     }
 
-    public function getIncidentsInBounds(Bounds $bounds, array $knownIndizes = []): array
+    public function getPositionsInBounds(Bounds $bounds, array $knownIndizes = []): array
     {
         $filterList = [];
         $filterList[] = new \Elastica\Filter\GeoBoundingBox('pin', $bounds->toLatLonArray());
@@ -43,18 +41,8 @@ class IncidentManager extends AbstractElasticManager
 
         $query->setSize(500);
 
-        $result = $this->elasticManager->getRepository('AppBundle:Incident')->find($query);
+        $result = $this->elasticManager->getRepository('AppBundle:Position')->find($query);
 
         return $result;
-    }
-
-    public function getIncidentsForCity(City $city): array
-    {
-        return $this->incidentRepository->findByCity($city);
-    }
-
-    public function getIncidentsByType(string $type, int $year): array
-    {
-        return $this->incidentRepository->findByIncidentTypeYear($type, $year);
     }
 }
