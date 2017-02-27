@@ -70,3 +70,9 @@ swiftmailer:
     spool:     { type: memory }
 
 nelmio_api_doc: ~
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        criticalmasslive: ~
