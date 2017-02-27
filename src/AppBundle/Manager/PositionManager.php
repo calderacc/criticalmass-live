@@ -17,25 +17,11 @@ class PositionManager extends AbstractElasticManager
         $this->positionRepository = $this->doctrine->getRepository('AppBundle:Position');
     }
 
-    public function getPositionsInBounds(Bounds $bounds, array $knownIndizes = []): array
+    public function getPositionsInBounds(Bounds $bounds): array
     {
-        $filterList = [];
-        $filterList[] = new \Elastica\Filter\GeoBoundingBox('pin', $bounds->toLatLonArray());
+        $boundingBoxFilter = new \Elastica\Filter\GeoBoundingBox('pin', $bounds->toLatLonArray());
 
-        $knownIndexFilters = [];
-
-        foreach ($knownIndizes as $knownIndex) {
-            $knownIndexFilters[] = new \Elastica\Filter\Term(['id' => $knownIndex]);
-        }
-
-        if (count($knownIndexFilters)) {
-            $filterList[] = new \Elastica\Filter\BoolNot(new \Elastica\Filter\BoolOr($knownIndexFilters));
-
-        }
-
-        $andFilter = new \Elastica\Filter\BoolAnd($filterList);
-
-        $filteredQuery = new \Elastica\Query\Filtered(new \Elastica\Query\MatchAll(), $andFilter);
+        $filteredQuery = new \Elastica\Query\Filtered(new \Elastica\Query\MatchAll(), $boundingBoxFilter);
 
         $query = new \Elastica\Query($filteredQuery);
 
