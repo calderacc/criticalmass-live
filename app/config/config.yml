@@ -75,4 +75,19 @@ fos_elastica:
     clients:
         default: { host: localhost, port: 9200 }
     indexes:
-        criticalmasslive: ~
+        criticalmasslive:
+            client: default
+            finder: ~
+            types:
+                position:
+                    mappings:
+                        id:
+                        latitude: ~
+                        longitude: ~
+                        pin: { type: geo_point }
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Position
+                        provider: ~
+                        listener: ~
+                        finder: ~
