@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="criticalmaps_user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CriticalmapsUserRepository")
+ * @JMS\ExclusionPolicy("all")
  */
 class CriticalmapsUser
 {
@@ -30,16 +31,19 @@ class CriticalmapsUser
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorRed = 0;
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorGreen = 0;
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorBlue = 0;
 

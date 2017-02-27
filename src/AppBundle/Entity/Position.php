@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Table(name="position")
  * @ORM\Entity()
+ * @JMS\ExclusionPolicy("all")
  */
 class Position
 {
@@ -14,28 +16,33 @@ class Position
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose()
      */
     protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="GlympseTicket", inversedBy="positions")
      * @ORM\JoinColumn(name="glympse_ticket_id", referencedColumnName="id")
+     * @JMS\Expose()
      */
     protected $glympseTicket;
 
     /**
      * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
      * @ORM\JoinColumn(name="criticalmaps_user", referencedColumnName="id")
+     * @JMS\Expose()
      */
     protected $criticalmapsUser;
 
     /**
      * @ORM\Column(type="float")
+     * @JMS\Expose()
      */
     protected $latitude;
 
     /**
      * @ORM\Column(type="float")
+     * @JMS\Expose()
      */
     protected $longitude;
 
@@ -71,6 +78,7 @@ class Position
 
     /**
      * @ORM\Column(type="datetime")
+     * @JMS\Expose()
      */
     protected $creationDateTime;
 

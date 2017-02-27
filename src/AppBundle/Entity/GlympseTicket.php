@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CriticalmapsUserRepository")
  * @ORM\Table(name="glympse_ticket")
+ * @JMS\ExclusionPolicy("all")
  */
 class GlympseTicket
 {
@@ -45,16 +47,19 @@ class GlympseTicket
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorRed = 0;
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorGreen = 0;
 
     /**
      * @ORM\Column(type="smallint")
+     * @JMS\Expose()
      */
     protected $colorBlue = 0;
 
