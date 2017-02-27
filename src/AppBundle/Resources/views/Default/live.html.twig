@@ -16,7 +16,7 @@
             apiAccessToken: '28fb1cc85d4b46c7e1e8f9b37aa7d7d8'
         };
 
-        CriticalMass.loadModule('LivePage', null, options, function (livePage) {
+        Live.loadModule('LivePage', null, options, function (livePage) {
             {% if ride.hasLocation() and ride.latitude != 0 and ride.longitude != 0 %}
             ride = livePage.addRide('{{ ride|serialize|raw|e('js') }}');
 
