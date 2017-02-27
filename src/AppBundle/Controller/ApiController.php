@@ -45,7 +45,7 @@ class ApiController extends FOSRestController
 
     protected function getPositionManager(): PositionManager
     {
-        return $this->get('criticalmass.manager.incident_manager');
+        return $this->get('criticalmass.manager.position_manager');
     }
 
     protected function getBoundsFromRequest(Request $request): Bounds
