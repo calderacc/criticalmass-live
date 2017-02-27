@@ -215,4 +215,9 @@ class Position
     {
         return $this->criticalmapsUser;
     }
+
+    public function getPin(): string
+    {
+        return $this->latitude . ',' . $this->longitude;
+    }
 }
