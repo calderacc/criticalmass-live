@@ -100,10 +100,13 @@ define(['leaflet', 'PositionEntity'], function (L) {
             }
         }
         $.support.cors = true;
+
+        var route = Routing.generate('caldera_criticalmass_live_api_positions');
+
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: '/app_dev.php/api/positions',
+            url: route,
             cache: false,
             success: successCallback,
             error: errorCallback
