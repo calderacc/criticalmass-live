@@ -14,5 +14,13 @@ require.config({
     baseUrl: '/bundles/app/js/modules',
     paths:
     {
+        'leaflet': '/bundles/app/js/leaflet/leaflet',
+        'leaflet-hash': '/bundles/app/js/leaflet/leaflet-hash'
     },
+    shim: {
+        'leaflet-hash': {
+            deps: ['leaflet'],
+            exports: 'L.Hash'
+        }
+    }
 });
