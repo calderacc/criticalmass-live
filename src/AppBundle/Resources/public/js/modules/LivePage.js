@@ -1,4 +1,4 @@
-define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash', 'Modal', 'CloseModalButton'], function () {
+define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash'], function () {
     LivePage = function (context, options) {
 
         this._options = options;

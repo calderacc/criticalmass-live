@@ -15,12 +15,27 @@ require.config({
     paths:
     {
         'leaflet': '/bundles/app/js/leaflet/leaflet',
-        'leaflet-hash': '/bundles/app/js/leaflet/leaflet-hash'
+        'leaflet-hash': '/bundles/app/js/leaflet/leaflet-hash',
+        'leaflet-locate': '/bundles/app/js/leaflet/L.Control.Locate',
+        'leaflet-groupedlayer': '/bundles/app/js/leaflet/leaflet.groupedlayercontrol',
+        'leaflet-extramarkers': '/bundles/app/js/leaflet/ExtraMarkers'
     },
     shim: {
         'leaflet-hash': {
             deps: ['leaflet'],
             exports: 'L.Hash'
+        },
+        'leaflet-locate': {
+            deps: ['leaflet'],
+            exports: 'L.Control.Locate'
+        },
+        'leaflet-groupedlayer': {
+            deps: ['leaflet'],
+            exports: 'L.Control.GroupedLayers'
+        },
+        'leaflet-extramarkers': {
+            deps: ['leaflet'],
+            exports: 'L.ExtraMarkers'
         }
     }
 });
