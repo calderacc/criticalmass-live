@@ -151,7 +151,7 @@ define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositio
                 var rideData = result[index];
                 var ride = that._factory.createRide(rideData);
 
-                ride.addToMap(that.map);
+                ride.addToContainer(that._rideContainer);
             }
         }
 
