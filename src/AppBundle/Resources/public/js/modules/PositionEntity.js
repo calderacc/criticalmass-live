@@ -6,23 +6,8 @@ define(['leaflet', 'MarkerEntity'], function () {
     PositionEntity.prototype = new MarkerEntity();
     PositionEntity.prototype.constructor = PositionEntity;
 
-    PositionEntity.prototype._color = null;
-    PositionEntity.prototype._avatarUrl = null;
-
-
-    PositionEntity.prototype.parseJson = function (position) {
-        this._colorRed = position.displayColor.red;
-        this._colorGreen = position.displayColor.green;
-        this._colorBlue = position.displayColor.blue;
-
-        this._latitude = position.coord.latitude;
-        this._longitude = position.coord.longitude;
-
-        this._avatarUrl = position.user.avatarUrl;
-    };
-
     PositionEntity.prototype._getHTML = function () {
-        return '<div class="user-position-inline" style="background-image: url(' + this._avatarUrl + '); border-color: ' + this.getColorString() + '"></div>';
+        return '<div class="user-position-inline" style="background-color: black; width: 50px; height: 50px; border-color: ' + this.getColorString() + '"></div>';
     };
 
     PositionEntity.prototype._initIcon = function () {
@@ -41,7 +26,11 @@ define(['leaflet', 'MarkerEntity'], function () {
     };
 
     PositionEntity.prototype.getColorString = function () {
-        return 'rgb(' + Math.round(this._colorRed) + ', ' + Math.round(this._colorGreen) + ', ' + Math.round(this._colorBlue) + ')';
+        var colorRed = this._glympse_ticket._colorRed;
+        var colorGreen = this._glympse_ticket._colorGreen;
+        var colorBlue = this._glympse_ticket._colorBlue;
+
+        return 'rgb(' + Math.round(colorRed) + ', ' + Math.round(colorGreen) + ', ' + Math.round(colorBlue) + ')';
     };
 
     PositionEntity.prototype.setColor = function (color) {
