@@ -78,7 +78,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
             $curl->get($loginUrl, [
                 'api_key' => $key,
                 'id' => $username,
-                'password' => $password
+                'password' => $password,
             ]);
         } catch (\Exception $exception) {
             throw new GlympseApiBrokenException($curl->error_message);
@@ -136,10 +136,9 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
             $queryData = [
                 'oauth_token' => $this->accessToken,
                 'properties' => 'true',
-                'next' => $ticket->getCounter()
+                'next' => $ticket->getCounter(),
             ];
 
-            var_dump($queryData);
             $curl->get($invitesUrl, $queryData);
         } catch (\Exception $exception) {
             throw new GlympseApiBrokenException($curl->error_message);
