@@ -54,6 +54,8 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
             if ($invitationCode && $citySlug) {
                 $this->output->writeln(sprintf('Found invitation code <comment>%s</comment> for <info>%s</info>', $invitationCode, $citySlug));
                 $this->saveInvitation($citySlug, $invitationCode);
+
+                $this->inbox->moveMail($unreadMail->id, 'INBOX.done');
             } else {
                 $this->output->writeln(sprintf('Could not grep city slug or invitation code from mail <info>%d</info>', $unreadMail->id));
             }
