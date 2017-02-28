@@ -118,7 +118,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         if (isset($queryResult->location) && $queryResult->location) {
             $positionList = $this->extractPositionList($queryResult->location);
 
-            $this->persistPositionList($positionList);
+            $this->persistPositionList($positionList, $ticket);
         }
 
         $ticket->setCounter($queryResult->next);
@@ -188,9 +188,12 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         return $positionList;
     }
 
-    protected function persistPositionList(array $positionList)
+    protected function persistPositionList(array $positionList, GlympseTicket $ticket)
     {
+        /** @var Position $position */
         foreach ($positionList as $position) {
+            $position->setGlympseTicket($ticket);
+
             $this->manager->persist($position);
         }
     }
