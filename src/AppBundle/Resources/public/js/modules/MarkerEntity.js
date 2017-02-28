@@ -22,7 +22,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
     };
 
     MarkerEntity.prototype._initPopup = function () {
-        this._modal = new Modal();
+        /*this._modal = new Modal();
         this._modal.setSize('md');
 
         this._setupModalContent();
@@ -31,7 +31,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
 
         this._marker.on('click', function () {
             that._modal.show();
-        });
+        });*/
     };
 
     MarkerEntity.prototype._createMarker = function () {
@@ -57,7 +57,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
         if (this.hasLocation()) {
             this._createMarker();
 
-            this._marker.addTo(map.map);
+            //this._marker.addTo(map.map);
         }
     };
 
