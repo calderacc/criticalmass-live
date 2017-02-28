@@ -107,7 +107,7 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
     protected function getTicketsToQuery()
     {
         return $this->manager->getRepository('AppBundle:GlympseTicket')->findBy(
-            ['queried' => false]
+            ['endDateTime' => null]
         );
     }
 
@@ -118,7 +118,11 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         if (isset($queryResult->location) && $queryResult->location) {
             $positionList = $this->extractPositionList($queryResult->location);
 
+            $this->output->writeln(sprintf('Found <comment>%d</comment> positions to track', count($positionList)));
+
             $this->persistPositionList($positionList, $ticket);
+        } else {
+            $this->output->writeln(sprintf('Did not find any positions to track'));
         }
 
         $ticket->setCounter($queryResult->next);
@@ -151,8 +155,12 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
         }
 
         if ($response->result == 'failure' && $response->meta->error == 'invite_code') {
+            $ticket->setEndDateTime(new \DateTime());
+
             throw new GlympseInviteUnknownException($response->meta->error_detail);
         } elseif ($response->result == 'failure') {
+            $ticket->setEndDateTime(new \DateTime());
+
             throw new GlympseApiErrorException($response->meta->error_detail);
         }
 
