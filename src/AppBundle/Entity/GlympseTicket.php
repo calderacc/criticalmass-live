@@ -64,12 +64,12 @@ class GlympseTicket
     protected $colorBlue = 0;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
     protected $startDateTime;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $endDateTime;
 
@@ -95,9 +95,7 @@ class GlympseTicket
 
     public function __construct()
     {
-        $this->creationDateTime = new \DateTime();
-        $this->startDateTime = new \DateTime();
-        $this->endDateTime = new \DateTime();
+
     }
 
     public function getId()
