@@ -14,8 +14,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class GlympseCollectMailsCommand extends ContainerAwareCommand
 {
-    /** @var Mailbox $mailbox */
-    protected $mailbox;
+    /** @var Mailbox $inbox */
+    protected $inbox;
 
     /** @var InputInterface $input */
     protected $input;
@@ -69,16 +69,16 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         $username = $this->getContainer()->getParameter('glympse.imap.username');
         $password = $this->getContainer()->getParameter('glympse.imap.password');
 
-        $this->mailbox = new Mailbox('{'.$host.':'.$port.'/novalidate-cert/imap/ssl}INBOX', $username, $password);
+        $this->inbox = new Mailbox('{'.$host.':'.$port.'/novalidate-cert/imap/ssl}INBOX', $username, $password);
     }
 
     protected function catchUnreadMails()
     {
-        $unreadMailIds = $this->mailbox->searchMailbox('TO "hamburg@criticalmass.live"');
+        $unreadMailIds = $this->inbox->searchMailbox('TO "hamburg@criticalmass.live"');
         $unreadMails = [];
 
         foreach ($unreadMailIds as $unreadMailId) {
-            $unreadMails[$unreadMailId] = $this->mailbox->getMail($unreadMailId);
+            $unreadMails[$unreadMailId] = $this->inbox->getMail($unreadMailId);
         }
 
         return $unreadMails;
