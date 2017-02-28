@@ -39,7 +39,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         $this->output = $output;
         $this->manager = $this->getContainer()->get('doctrine')->getManager();
 
-        $this->connectMailbox();
+        $this->inbox = $this->connectMailbox();
 
         $unreadMails = $this->catchUnreadMails();
 
@@ -64,17 +64,19 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         $this->manager->flush();
     }
 
-    protected function connectMailbox()
+    protected function connectMailbox(): Mailbox
     {
         $host = $this->getContainer()->getParameter('glympse.imap.hostname');
         $port = $this->getContainer()->getParameter('glympse.imap.port');
         $username = $this->getContainer()->getParameter('glympse.imap.username');
         $password = $this->getContainer()->getParameter('glympse.imap.password');
 
-        $this->inbox = new Mailbox('{'.$host.':'.$port.'/novalidate-cert/imap/ssl}INBOX', $username, $password);
+        $mailbox = new Mailbox('{'.$host.':'.$port.'/novalidate-cert/imap/ssl}INBOX', $username, $password);
+
+        return $mailbox;
     }
 
-    protected function catchUnreadMails()
+    protected function catchUnreadMails(): array
     {
         $unreadMailIds = $this->inbox->searchMailbox('ALL');
         $unreadMails = [];
@@ -86,7 +88,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         return $unreadMails;
     }
 
-    protected function grepInvitationCode(IncomingMail $mail)
+    protected function grepInvitationCode(IncomingMail $mail): string
     {
         $plainBody = $mail->textPlain;
 
@@ -101,7 +103,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         return $invitationCode;
     }
 
-    protected function grepCitySlug(IncomingMail $mail)
+    protected function grepCitySlug(IncomingMail $mail): string
     {
         $domainName = $this->getContainer()->getParameter('glympse.mail.domain');
         $domainName = str_replace('.', '\\.', $domainName);
@@ -119,22 +121,29 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         return $citySlug;
     }
 
-    protected function saveInvitation(string $citySlug, string $invitationCode)
+    protected function saveInvitation(string $citySlug, string $invitationCode): ?GlympseTicket
     {
         /** @var CitySlug $citySlug */
         $citySlug = $this->manager->getRepository('AppBundle:CitySlug')->findOneBySlug($citySlug);
 
         if (!$citySlug) {
-            return;
+            return null;
         }
 
         /** @var City $city */
         $city = $citySlug->getCity();
 
         if (!$city) {
-            return;
+            return null;
         }
 
+        $ticket = $this->createGlympseTicket($city, $invitationCode);
+
+        return $ticket;
+    }
+
+    protected function createGlympseTicket(City $city, string $invitationCode): GlympseTicket
+    {
         $ticket = new GlympseTicket();
 
         $ticket
@@ -142,8 +151,13 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
             ->setColorBlue(rand(0, 255))
             ->setColorRed(rand(0, 255))
             ->setColorGreen(rand(0, 255))
-            ->setInviteId($invitationCode);
+            ->setInviteId($invitationCode)
+            ->setCreationDateTime(new \DateTime())
+            ->setStartDateTime(new \DateTime())
+        ;
 
         $this->manager->persist($ticket);
+
+        return $ticket;
     }
 }
