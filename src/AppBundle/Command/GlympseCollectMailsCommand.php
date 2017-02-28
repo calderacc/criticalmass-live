@@ -76,7 +76,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
 
     protected function catchUnreadMails()
     {
-        $unreadMailIds = $this->inbox->searchMailbox('TO "hamburg@criticalmass.live"');
+        $unreadMailIds = $this->inbox->searchMailbox('ALL');
         $unreadMails = [];
 
         foreach ($unreadMailIds as $unreadMailId) {
