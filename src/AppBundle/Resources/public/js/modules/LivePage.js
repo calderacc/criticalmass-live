@@ -1,4 +1,4 @@
-define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash', 'RideEntity', 'Factory'], function () {
+define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositions', 'leaflet-hash', 'Factory'], function () {
     LivePage = function (context, options) {
 
         this._options = options;
