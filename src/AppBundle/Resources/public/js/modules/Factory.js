@@ -1,4 +1,4 @@
-define(['RideEntity', 'CityEntity'], function () {
+define(['RideEntity', 'CityEntity', 'PositionEntity'], function () {
 
     Factory = function () {
     };
@@ -18,6 +18,14 @@ define(['RideEntity', 'CityEntity'], function () {
         cityEntity = this._transferProperties(cityEntity, cityJson);
 
         return cityEntity;
+    };
+
+    Factory.prototype.createPosition = function (positionJson) {
+        var positionEntity = new PositionEntity();
+
+        positionEntity = this._transferProperties(positionEntity, positionJson);
+
+        return positionEntity;
     };
 
     Factory.prototype._transferProperties = function (entity, data) {

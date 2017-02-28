@@ -1,4 +1,4 @@
-define(['leaflet', 'PositionEntity'], function (L) {
+define(['leaflet', 'Factory'], function (L, Factory) {
     MapPositions = function (context, options) {
         this._options = options;
 
@@ -61,8 +61,7 @@ define(['leaflet', 'PositionEntity'], function (L) {
     };
 
     MapPositions.prototype._createUsernamePosition = function (position) {
-        var positionElement = new PositionEntity();
-        positionElement.parseJson(position);
+        var positionElement = Factory.createPosition(position);
 
         positionElement.addToContainer(this._container, position.identifier);
     };
@@ -74,11 +73,9 @@ define(['leaflet', 'PositionEntity'], function (L) {
     MapPositions.prototype._drawPositions = function () {
         var that = this;
 
-        function successCallback(ajaxResultData) {
-            var resultArray = ajaxResultData.result;
-
+        function successCallback(resultArray) {
             for (var index in resultArray) {
-                var identifier = resultArray[index].identifier;
+                var identifier = resultArray[index].id;
 
                 if (!that._container.hasEntity(identifier)) {
                     that._createUsernamePosition(resultArray[index]);
@@ -101,7 +98,15 @@ define(['leaflet', 'PositionEntity'], function (L) {
         }
         $.support.cors = true;
 
-        var route = Routing.generate('caldera_criticalmass_live_api_positions');
+        var route = Routing.generate(
+            'caldera_criticalmass_live_api_position',
+            {
+                northWestLatitude: 55,
+                northWestLongitude: 9,
+                southEastLatitude: 53,
+                southEastLongitude: 11
+            }
+        );
 
         $.ajax({
             type: 'GET',
