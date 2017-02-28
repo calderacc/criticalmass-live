@@ -171,22 +171,24 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
     {
         $positionList = [];
 
+        $currentLocation = null;
+
         $currentLatitude = null;
         $currentLongitude = null;
 
         foreach ($locations as $location) {
-            if (!$currentLatitude || !$currentLongitude) {
-                $currentLatitude = $location[1];
-                $currentLongitude = $location[2];
+            if (!$currentLocation) {
+                $currentLocation = $location;
             } else {
-                $currentLatitude += $location[1];
-                $currentLongitude -= $location[2];
+                foreach ($location as $key => $value) {
+                    $currentLocation[$key] += $value;
+                }
             }
 
             $position = new Position();
             $position
-                ->setLatitude($currentLatitude / 1000000)
-                ->setLongitude($currentLongitude / 1000000)
+                ->setLatitude($currentLocation[1] / 1000000)
+                ->setLongitude($currentLocation[2] / 1000000)
             ;
 
             $positionList[] = $position;
