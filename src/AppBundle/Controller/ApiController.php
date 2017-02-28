@@ -13,10 +13,6 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class ApiController extends FOSRestController
 {
     /**
-     * This is the documentation description of your method, it will appear
-     * on a specific pane. It will read all the text until the first
-     * annotation.
-     *
      * @ApiDoc(
      *  resource=true,
      *  description="This is a description of your API method",
@@ -70,5 +66,24 @@ class ApiController extends FOSRestController
         );
 
         return new Bounds($northWest, $southEast);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method"
+     * )
+     */
+    public function getRidesAction(Request $request)
+    {
+        $rideList = $this->getDoctrine()->getRepository('AppBundle:Ride')->findCurrentRides();
+
+        $view = View::create();
+        $view
+            ->setData($rideList)
+            ->setFormat('json')
+            ->setStatusCode(200);
+
+        return $this->handleView($view);
     }
 }
