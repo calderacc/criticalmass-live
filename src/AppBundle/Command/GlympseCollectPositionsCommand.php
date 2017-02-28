@@ -187,8 +187,13 @@ class GlympseCollectPositionsCommand extends ContainerAwareCommand
 
             $position = new Position();
             $position
+                ->setTimestamp($currentLocation[0] / 1000)
                 ->setLatitude($currentLocation[1] / 1000000)
                 ->setLongitude($currentLocation[2] / 1000000)
+                ->setAltitude($currentLocation[3])
+                ->setHeading($currentLocation[4])
+                ->setSpeed($currentLocation[5] / 100)
+                ->setAccuracy($currentLocation[6])
             ;
 
             $positionList[] = $position;
