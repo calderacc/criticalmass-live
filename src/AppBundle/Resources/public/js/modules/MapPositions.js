@@ -99,19 +99,12 @@ define(['leaflet', 'PositionEntity'], function (L) {
                 that._offlineCallback();
             }
         }
-
-        var apiUrl = this._options.apiUrl;
-        var accessToken = this._options.apiAccessToken;
-
         $.support.cors = true;
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: apiUrl,
+            url: '/app_dev.php/api/positions',
             cache: false,
-            headers: {
-                'X-CriticalMassIn-Access-Token': accessToken
-            },
             success: successCallback,
             error: errorCallback
         });

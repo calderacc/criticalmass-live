@@ -10,7 +10,8 @@
     </div>
 
     <script>
-
+        Live.loadModule('LivePage');
+        {#
         var options = {
             apiUrl: window.location.origin + '/api/positions',
             apiAccessToken: '28fb1cc85d4b46c7e1e8f9b37aa7d7d8'
@@ -28,6 +29,6 @@
             {% endif %}
 
             livePage.setFocus();
-        });
+        });#}
     </script>
 {% endblock %}
