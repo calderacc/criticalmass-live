@@ -95,9 +95,7 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
         $.support.cors = true;
 
-        var bounds = this._getQueryBounds();
-
-        var route = Routing.generate('caldera_criticalmass_live_api_position', bounds);
+        var route = Routing.generate('caldera_criticalmass_live_api_position');
 
         $.ajax({
             type: 'GET',
@@ -128,10 +126,6 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         return this._container.countEntities();
     };
 
-    MapPositions.prototype.getBounds = function () {
-        return this._container.getBounds();
-    };
-
     MapPositions.prototype.getLatestLatLng = function () {
         var positionList = this._container.getList();
 
@@ -142,17 +136,6 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
 
         return null;
-    };
-
-    MapPositions.prototype._getQueryBounds = function() {
-        var bounds = this._map.getBounds();
-
-        return {
-            northWestLatitude: bounds.getNorthWest().lat,
-            northWestLongitude: bounds.getNorthWest().lng,
-            southEastLatitude: bounds.getSouthEast().lat,
-            southEastLongitude: bounds.getSouthEast().lng
-        };
     };
 
     return MapPositions;

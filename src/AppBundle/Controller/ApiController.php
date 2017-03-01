@@ -28,7 +28,11 @@ class ApiController extends FOSRestController
     {
         $bounds = $this->getBoundsFromRequest($request);
 
-        $positionList = $this->getPositionManager()->getPositionsInBounds($bounds);
+        if ($bounds) {
+            $positionList = $this->getPositionManager()->getCurrentPositionsInBounds($bounds);
+        } else {
+            $positionList = $this->getPositionManager()->getCurrentPositions();
+        }
 
         $view = View::create();
         $view
@@ -44,7 +48,7 @@ class ApiController extends FOSRestController
         return $this->get('criticalmass.manager.position_manager');
     }
 
-    protected function getBoundsFromRequest(Request $request): Bounds
+    protected function getBoundsFromRequest(Request $request): ?Bounds
     {
         if (
             !$request->query->get('northWestLatitude') ||
@@ -52,7 +56,7 @@ class ApiController extends FOSRestController
             !$request->query->get('southEastLatitude') ||
             !$request->query->get('southEastLongitude')
         ) {
-            throw $this->createNotFoundException('wefwef');
+            return null;
         }
 
         $northWest = new Coord(
