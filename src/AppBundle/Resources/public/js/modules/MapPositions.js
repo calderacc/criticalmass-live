@@ -44,7 +44,7 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
             var found = false;
 
             for (var index in resultArray) {
-                if (existingIdentifier == resultArray[index].identifier) {
+                if (existingIdentifier == resultArray[index].id) {
                     found = true;
                     break;
                 }
@@ -56,8 +56,8 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
     };
 
-    MapPositions.prototype._removeUsernamePosition = function (identifier) {
-        this._container.removeEntity(identifier);
+    MapPositions.prototype._removeUsernamePosition = function (id) {
+        this._container.removeEntity(id);
     };
 
     MapPositions.prototype._createUsernamePosition = function (position) {
@@ -67,8 +67,8 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         positionElement.addToContainer(this._container, positionElement._id);
     };
 
-    MapPositions.prototype._moveUsernamePosition = function (identifier, coord) {
-        this._container.getEntity(identifier).setLatLng([coord.latitude, coord.longitude]);
+    MapPositions.prototype._moveUsernamePosition = function (positionEntity) {
+        this._container.getEntity(positionEntity._id).setLatLng([positionEntity._latitude, positionEntity._longitude]);
     };
 
     MapPositions.prototype._drawPositions = function () {
@@ -81,11 +81,7 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
                 if (!that._container.hasEntity(identifier)) {
                     that._createUsernamePosition(resultArray[index]);
                 } else {
-                    that._moveUsernamePosition(resultArray[index].identifier, resultArray[index].coord);
-
-                    if (!that._isUserPositionColor(resultArray[index].identifier, resultArray[index].displayColor) == false) {
-                        that._setUserPositionColor(resultArray[index].identifier, resultArray[index].displayColor);
-                    }
+                    that._moveUsernamePosition(resultArray[index]);
                 }
             }
 
