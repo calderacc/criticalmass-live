@@ -67,8 +67,8 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         positionElement.addToContainer(this._container, positionElement._id);
     };
 
-    MapPositions.prototype._moveUsernamePosition = function (positionEntity) {
-        this._container.getEntity(positionEntity._id).setLatLng([positionEntity._latitude, positionEntity._longitude]);
+    MapPositions.prototype._moveUsernamePosition = function (position) {
+        this._container.getEntity(position.id).setLatLng([position.latitude, position.longitude]);
     };
 
     MapPositions.prototype._drawPositions = function () {
