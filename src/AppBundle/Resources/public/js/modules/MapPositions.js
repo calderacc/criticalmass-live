@@ -95,15 +95,9 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
         $.support.cors = true;
 
-        var route = Routing.generate(
-            'caldera_criticalmass_live_api_position',
-            {
-                northWestLatitude: 55,
-                northWestLongitude: 9,
-                southEastLatitude: 53,
-                southEastLongitude: 11
-            }
-        );
+        var bounds = this._getQueryBounds();
+
+        var route = Routing.generate('caldera_criticalmass_live_api_position', bounds);
 
         $.ajax({
             type: 'GET',
@@ -148,6 +142,17 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
 
         return null;
+    };
+
+    MapPositions.prototype._getQueryBounds = function() {
+        var bounds = this._map.getBounds();
+
+        return {
+            northWestLatitude: bounds.getNorthWest().lat,
+            northWestLongitude: bounds.getNorthWest().lng,
+            southEastLatitude: bounds.getSouthEast().lat,
+            southEastLongitude: bounds.getSouthEast().lng
+        };
     };
 
     return MapPositions;
