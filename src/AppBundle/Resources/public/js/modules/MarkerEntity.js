@@ -40,16 +40,15 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
         }
 
         if (!this._marker) {
-            this._marker = L.marker(
-                [
-                    this._latitude,
-                    this._longitude
-                ], {
+            var coord = [this._latitude, this._longitude];
+
+            this._marker = L.marker(coord,
+                {
                     icon: this._icon
                 }
             );
 
-            this._initPopup();
+            //this._initPopup();
         }
     };
 
@@ -57,7 +56,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
         if (this.hasLocation()) {
             this._createMarker();
 
-            //this._marker.addTo(map.map);
+            this._marker.addTo(map.map);
         }
     };
 

@@ -1,4 +1,4 @@
-define(['leaflet', 'Factory'], function (L, Factory) {
+define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
     MapPositions = function (context, options) {
         this._options = options;
 
@@ -63,7 +63,8 @@ define(['leaflet', 'Factory'], function (L, Factory) {
     MapPositions.prototype._createUsernamePosition = function (position) {
         var positionElement = Factory.createPosition(position);
 
-        positionElement.addToContainer(this._container, position.identifier);
+        //positionElement.addToMap(this._map);
+        positionElement.addToContainer(this._container, positionElement._id);
     };
 
     MapPositions.prototype._moveUsernamePosition = function (identifier, coord) {
