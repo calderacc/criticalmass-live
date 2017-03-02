@@ -2,6 +2,7 @@
 
 namespace AppBundle\Manager;
 
+use AppBundle\Repository\PositionRepository;
 use Caldera\GeoBasic\Bounds\Bounds;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Elastica\Aggregation\Terms;
@@ -9,7 +10,7 @@ use Elastica\QueryBuilder\DSL\Aggregation;
 
 class PositionManager extends AbstractElasticManager
 {
-    /** @var ObjectRepository $positionRepository */
+    /** @var PositionRepository $positionRepository */
     protected $positionRepository = null;
 
     public function __construct($doctrine, $elasticIndex)
@@ -36,7 +37,8 @@ class PositionManager extends AbstractElasticManager
 
     public function getCurrentPositions(): array
     {
-        $
-        return $result;
+        $positionList = $this->positionRepository->findCurrentPositions();
+
+        return $positionList;
     }
 }

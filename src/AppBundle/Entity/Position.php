@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Table(name="position")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PositionRepository")
  * @JMS\ExclusionPolicy("all")
  */
 class Position

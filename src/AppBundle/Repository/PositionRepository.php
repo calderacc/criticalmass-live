@@ -2,13 +2,23 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\City;
-use AppBundle\Entity\Ride;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
-class RideRepository extends EntityRepository
+class PositionRepository extends EntityRepository
 {
-    public function findCurrentRides($order = 'ASC'): array
+    public function findCurrentPositions(): array
     {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->addGroupBy('p.glympseTicket')
+            ->addGroupBy('p.criticalmapsUser')
+        ;
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 
 }
