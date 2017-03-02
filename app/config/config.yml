@@ -84,6 +84,8 @@ fos_elastica:
                         id:
                         latitude: ~
                         longitude: ~
+                        glympseTicket: ~
+                        criticalmapsUser: ~
                         pin: { type: geo_point }
                     persistence:
                         driver: orm

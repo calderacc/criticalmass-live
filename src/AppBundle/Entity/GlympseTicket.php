@@ -275,4 +275,9 @@ class GlympseTicket
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->inviteId;
+    }
 }

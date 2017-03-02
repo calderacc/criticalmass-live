@@ -4,6 +4,8 @@ namespace AppBundle\Manager;
 
 use Caldera\GeoBasic\Bounds\Bounds;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Elastica\Aggregation\Terms;
+use Elastica\QueryBuilder\DSL\Aggregation;
 
 class PositionManager extends AbstractElasticManager
 {
@@ -34,14 +36,7 @@ class PositionManager extends AbstractElasticManager
 
     public function getCurrentPositions(): array
     {
-        $matchAll = new \Elastica\Query\Filtered(new \Elastica\Query\MatchAll());
-
-        $query = new \Elastica\Query($matchAll);
-
-        $query->setSize(500);
-
-        $result = $this->elasticManager->getRepository('AppBundle:Position')->find($query);
-
+        $
         return $result;
     }
 }
