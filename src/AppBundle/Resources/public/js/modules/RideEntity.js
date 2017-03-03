@@ -68,13 +68,13 @@ define(['leaflet', 'MarkerEntity', 'dateformat', 'ModalButton', 'CloseModalButto
         var cityButton = new ModalButton();
         cityButton.setCaption('Städteseite');
         cityButton.setIcon('university');
-        cityButton.setClass('btn-success');
+        cityButton.setClass('btn-primary');
         //cityButton.setHref(Routing.generate('caldera_criticalmass_desktop_city_show', {citySlug: this._city._slug}));
 
         var rideButton = new ModalButton();
         rideButton.setCaption('Tourseite');
         rideButton.setIcon('bicycle');
-        rideButton.setClass('btn-success');
+        rideButton.setClass('btn-primary');
         /*rideButton.setHref(Routing.generate('caldera_criticalmass_ride_show', {
             citySlug: this._city._slug,
             rideDate: '2016-09-09' //this._timestamp.format('yyyy-mm-dd')
