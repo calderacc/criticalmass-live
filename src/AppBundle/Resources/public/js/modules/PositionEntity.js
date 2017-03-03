@@ -41,5 +41,9 @@ define(['leaflet', 'MarkerEntity'], function () {
         this._initIcon();
     };
 
+    PositionEntity.prototype._initPopup = function () {
+
+    };
+
     return PositionEntity;
 });
