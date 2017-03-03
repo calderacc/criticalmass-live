@@ -1,4 +1,4 @@
-define(['leaflet', 'MarkerEntity'], function () {
+define(['leaflet', 'MarkerEntity', 'dateformat'], function () {
     RideEntity = function () {
     };
 
