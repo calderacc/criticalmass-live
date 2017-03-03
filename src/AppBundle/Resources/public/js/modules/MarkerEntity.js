@@ -1,4 +1,4 @@
-define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
+define(['BaseEntity', 'leaflet', 'leaflet-extramarkers', 'Modal'], function () {
     MarkerEntity = function () {
 
     };
@@ -18,11 +18,10 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
 
     // this should be extended, too
     MarkerEntity.prototype._setupModalContent = function () {
-
     };
 
     MarkerEntity.prototype._initPopup = function () {
-        /*this._modal = new Modal();
+        this._modal = new Modal();
         this._modal.setSize('md');
 
         this._setupModalContent();
@@ -31,7 +30,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
 
         this._marker.on('click', function () {
             that._modal.show();
-        });*/
+        });
     };
 
     MarkerEntity.prototype._createMarker = function () {
@@ -48,7 +47,7 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers'], function () {
                 }
             );
 
-            //this._initPopup();
+            this._initPopup();
         }
     };
 

@@ -1,4 +1,4 @@
-define(['leaflet', 'MarkerEntity', 'dateformat'], function () {
+define(['leaflet', 'MarkerEntity', 'dateformat', 'ModalButton', 'CloseModalButton'], function () {
     RideEntity = function () {
     };
 
@@ -57,35 +57,35 @@ define(['leaflet', 'MarkerEntity', 'dateformat'], function () {
     RideEntity.prototype._setupModalButtons = function () {
         var that = this;
 
-        var centerButton = new ModalButton();
+        /*var centerButton = new ModalButton();
         centerButton.setCaption('Zentrieren');
         centerButton.setIcon('map-pin');
         centerButton.setClass('btn-success');
         centerButton.setOnClickEvent(function () {
             that._CriticalService.getMap().setView([that._latitude, that._longitude], 13);
-        });
+        });*/
 
         var cityButton = new ModalButton();
         cityButton.setCaption('Städteseite');
         cityButton.setIcon('university');
         cityButton.setClass('btn-success');
-        cityButton.setHref(Routing.generate('caldera_criticalmass_desktop_city_show', {citySlug: this._city._slug}));
+        //cityButton.setHref(Routing.generate('caldera_criticalmass_desktop_city_show', {citySlug: this._city._slug}));
 
         var rideButton = new ModalButton();
         rideButton.setCaption('Tourseite');
         rideButton.setIcon('bicycle');
         rideButton.setClass('btn-success');
-        rideButton.setHref(Routing.generate('caldera_criticalmass_ride_show', {
+        /*rideButton.setHref(Routing.generate('caldera_criticalmass_ride_show', {
             citySlug: this._city._slug,
-            rideDate: this._timestamp.format('yyyy-mm-dd')
-        }));
+            rideDate: '2016-09-09' //this._timestamp.format('yyyy-mm-dd')
+        }));*/
 
         var closeButton = new CloseModalButton;
 
         var buttons = [
             cityButton,
             rideButton,
-            centerButton,
+            //centerButton,
             closeButton
         ];
 
