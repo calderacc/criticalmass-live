@@ -18,48 +18,46 @@
 </head>
 
 <body>
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse" id="navigation">
-    <a class="navbar-brand" href="{{ path('caldera_criticalmass_live_frontpage') }}">
-        criticalmass.live
-    </a>
 
-    <ul class="nav navbar-nav pull-xs-right">
-        {#<li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#commentModal">
-                <i class="fa fa-camera" aria-hidden="true"></i>
-                <span class="hidden-xs-down">
-                    Kommentar
-                </span>
-            </a>
-        </li>#}
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-info" aria-hidden="true"></i>
-                <span class="hidden-xs-down">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="{{ path('caldera_criticalmass_live_frontpage') }}">
+            criticalmass.live
+        </a>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span class="hidden-xs-down">
                     Was ist die Masse?
                 </span>
-            </a>
-        </li>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fa fa-bicycle" aria-hidden="true"></i>
-                <span class="hidden-xs-down">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-bicycle" aria-hidden="true"></i>
+                    <span class="hidden-xs-down">
                     Live Tracking?
                 </span>
-            </a>
-        </li>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#legalModal">
-                <i class="fa fa-gavel" aria-hidden="true"></i>
-                <span class="hidden-xs-down">
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#legalModal">
+                    <i class="fa fa-gavel" aria-hidden="true"></i>
+                    <span class="hidden-xs-down">
                     Impressum?
                 </span>
-            </a>
-        </li>
-    </ul>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 {% block content %}{% endblock %}
