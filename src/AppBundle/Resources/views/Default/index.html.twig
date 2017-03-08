@@ -1,13 +1,13 @@
 {% extends 'AppBundle:Template:MasterTemplate.html.twig' %}
 
 {% block content %}
-    <div class="container m-t-5">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 offset-sm-3">
+            <div class="col-12 col-sm-6 offset-sm-3">
                 {% if rides | length > 0 %}
                     <form name="" class="form-inline">
                         <div class="row">
-                            <div class="col-xs-12 text-xs-center">
+                            <div class="col-12 text-xs-center">
                                 <h2>
                                     Auf den Sattel, fertig los
                                 </h2>
@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-12 text-xs-center">
+                            <div class="col-12 text-xs-center">
                                 <p class="lead">
                                     Wo bist du heute unterwegs?
                                 </p>
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-12 text-xs-center">
+                            <div class="col-12 text-xs-center">
                                 <select class="form-control" id="select-ride">
                                     {% for ride in rides %}
                                         {% if (ride.hasLocation() and ride.latitude and ride.longitude) %}
@@ -43,8 +43,8 @@
                             </div>
                         </div>
 
-                        <div class="row m-t-1">
-                            <div class="col-xs-12 text-xs-center">
+                        <div class="row mt-1">
+                            <div class="col-12 text-center">
                                 <div class="btn-group">
                                     <button id="ride-on" type="submit" class="btn btn-primary">
                                         Ride on
@@ -58,7 +58,7 @@
                     </form>
                 {% else %}
                     <div class="row">
-                        <div class="col-xs-12 text-xs-center">
+                        <div class="col-12 text-center">
                             <h2>
                                 Nichts los auf den Straßen
                             </h2>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-12 text-xs-center">
+                        <div class="col-12 text-center">
                             <p class="lead">
                                 Leider ist momentan keine kritische Masse unterwegs.
                             </p>
@@ -76,8 +76,8 @@
             </div>
         </div>
 
-        <div class="row m-t-5">
-            <div class="col-xs-12 col-sm-10 offset-sm-1 text-xs-center">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-10 offset-sm-1 text-center">
                 <h4>
                     Critical Mass?
                 </h4>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-10 offset-sm-1">
+            <div class="col-12 col-sm-10 offset-sm-1">
                 <p>
                     Fahrradfahren! Freunde treffen! Die Critical Mass ist eine weltweite Bewegung: Rund um den Globus
                     steigen am letzten Freitag im Monat Menschen auf ihr Fahrrad und rollen gemeinsam durch die Stadt.
@@ -104,8 +104,8 @@
             </div>
         </div>
 
-        <div class="row m-t-5">
-            <div class="col-xs-12 col-sm-10 offset-sm-1 text-xs-center">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-10 offset-sm-1 text-center">
                 <h4>
                     Live Tracking?
                 </h4>
@@ -117,7 +117,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-10 offset-sm-1">
+            <div class="col-12 col-sm-10 offset-sm-1">
                 <p>
                     Falls du zu spät aus dem Bureau kommst, kurz an einer Tankstelle Getränkenachschub besorgst oder
                     nach dem Corken schnell wieder nach vorne willst, kannst du dich immer auf digitale Helfer
@@ -128,8 +128,8 @@
             </div>
         </div>
 
-        <div class="row m-t-5 hidden-xs-down">
-            <div class="col-xs-12 col-sm-10 offset-sm-1 text-xs-center">
+        <div class="row mt-5 hidden-xs-down">
+            <div class="col-12 col-sm-10 offset-sm-1 text-center">
                 <h4>
                     Critical Mass Live Tracking?
                 </h4>
