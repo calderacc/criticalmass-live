@@ -26,9 +26,10 @@ define(['leaflet', 'MarkerEntity'], function () {
     };
 
     PositionEntity.prototype.getColorString = function () {
-        var colorRed = 255;//this._glympseTicket._colorRed;
-        var colorGreen = 127;//this._glympseTicket._colorGreen;
-        var colorBlue = 0;//this._glympseTicket._colorBlue;
+        console.log(this);
+        var colorRed = this._rgbColor['red'];
+        var colorGreen = this._rgbColor['green'];
+        var colorBlue = this._rgbColor['blue'];
 
         return 'rgb(' + Math.round(colorRed) + ', ' + Math.round(colorGreen) + ', ' + Math.round(colorBlue) + ')';
     };
