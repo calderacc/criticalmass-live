@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\EntityInterface\LocationServiceInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
@@ -10,7 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="glympse_ticket")
  * @JMS\ExclusionPolicy("all")
  */
-class GlympseTicket
+class GlympseTicket implements LocationServiceInterface
 {
     /**
      * @ORM\Id
@@ -190,6 +191,15 @@ class GlympseTicket
         $this->colorBlue = $colorBlue;
 
         return $this;
+    }
+
+    public function getRgbColor(): array
+    {
+        return [
+            'red' => $this->colorRed,
+            'green' => $this->colorGreen,
+            'blue' => $this->colorBlue
+        ];
     }
 
     public function getStartDateTime()

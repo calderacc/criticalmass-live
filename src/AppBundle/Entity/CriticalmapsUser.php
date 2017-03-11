@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\EntityInterface\LocationServiceInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
@@ -10,7 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CriticalmapsUserRepository")
  * @JMS\ExclusionPolicy("all")
  */
-class CriticalmapsUser
+class CriticalmapsUser implements LocationServiceInterface
 {
     /**
      * @ORM\Id
@@ -131,6 +132,15 @@ class CriticalmapsUser
         $this->colorBlue = $colorBlue;
 
         return $this;
+    }
+
+    public function getRgbColor(): array
+    {
+        return [
+            'red' => $this->colorRed,
+            'green' => $this->colorGreen,
+            'blue' => $this->colorBlue
+        ];
     }
 
     public function getStartDateTime()
