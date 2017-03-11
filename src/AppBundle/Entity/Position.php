@@ -23,14 +23,12 @@ class Position
     /**
      * @ORM\ManyToOne(targetEntity="GlympseTicket", inversedBy="positions")
      * @ORM\JoinColumn(name="glympse_ticket_id", referencedColumnName="id")
-     * @JMS\Expose()
      */
     protected $glympseTicket;
 
     /**
      * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
      * @ORM\JoinColumn(name="criticalmaps_user", referencedColumnName="id")
-     * @JMS\Expose()
      */
     protected $criticalmapsUser;
 
