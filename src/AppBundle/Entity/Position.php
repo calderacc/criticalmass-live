@@ -240,6 +240,15 @@ class Position
 
     /**
      * @JMS\VirtualProperty()
+     * @JMS\SerializedName("providerName")
+     */
+    public function getLocationServiceName(): string
+    {
+        return $this->getLocationService()->getName();
+    }
+
+    /**
+     * @JMS\VirtualProperty()
      * @JMS\SerializedName("rgbColor")
      */
     public function getRgbColor(): array

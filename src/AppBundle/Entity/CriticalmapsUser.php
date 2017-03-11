@@ -166,6 +166,11 @@ class CriticalmapsUser implements LocationServiceInterface
 
         return $this;
     }
+    
+    public function getName(): string
+    {
+        return 'criticalmaps';
+    }
 
     public function __toString(): string
     {

@@ -286,6 +286,11 @@ class GlympseTicket implements LocationServiceInterface
         return $this;
     }
 
+    public function getName(): string
+    {
+        return 'glympse';
+    }
+
     public function __toString(): string
     {
         return $this->inviteId;
