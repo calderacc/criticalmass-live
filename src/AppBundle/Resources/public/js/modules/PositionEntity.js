@@ -6,8 +6,14 @@ define(['leaflet', 'MarkerEntity'], function () {
     PositionEntity.prototype = new MarkerEntity();
     PositionEntity.prototype.constructor = PositionEntity;
 
+    PositionEntity.prototype._getProviderName = function() {
+        return this._providerName;
+    };
+
     PositionEntity.prototype._getHTML = function () {
-        return '<div class="user-position-inline" style="background-color: black; width: 50px; height: 50px; border-color: ' + this.getColorString() + '"></div>';
+        var backgroundImageUrl = '/bundles/app/img/providers/' + this._getProviderName() + '.png';
+
+        return '<div class="user-position-inline" style="background-image: url(' + backgroundImageUrl + ');background-color: black; width: 50px; height: 50px; border-color: ' + this.getColorString() + '"></div>';
     };
 
     PositionEntity.prototype._initIcon = function () {
