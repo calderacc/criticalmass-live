@@ -78,6 +78,7 @@ class Position
     /**
      * @ORM\Column(type="datetime")
      * @JMS\Expose()
+     * @JMS\SerializedName("creationDateTime")
      */
     protected $creationDateTime;
 
@@ -239,6 +240,7 @@ class Position
 
     /**
      * @JMS\VirtualProperty()
+     * @JMS\SerializedName("rgbColor")
      */
     public function getRgbColor(): array
     {
