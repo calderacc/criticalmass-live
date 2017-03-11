@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\EntityInterface\LocationServiceInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
@@ -225,5 +226,24 @@ class Position
     public function getPin(): string
     {
         return $this->latitude . ',' . $this->longitude;
+    }
+
+    public function getLocationService(): LocationServiceInterface
+    {
+        if ($this->glympseTicket) {
+            return $this->glympseTicket;
+        } else {
+            return $this->criticalmapsUser;
+        }
+    }
+
+    /**
+     * @JMS\VirtualProperty()
+     */
+    public function getRgbColor(): array
+    {
+        $locationService = $this->getLocationService();
+
+        return $locationService->getRgbColor();
     }
 }
