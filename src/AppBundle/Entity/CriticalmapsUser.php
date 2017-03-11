@@ -69,65 +69,65 @@ class CriticalmapsUser implements LocationServiceInterface
         $this->colorBlue = rand(0, 255);
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
 
-    public function setIdentifier($identifier)
+    public function setIdentifier($identifier): CriticalmapsUser
     {
         $this->identifier = $identifier;
 
         return $this;
     }
 
-    public function getCreationDateTime()
+    public function getCreationDateTime(): \DateTime
     {
         return $this->creationDateTime;
     }
 
-    public function setCreationDateTime($creationDateTime)
+    public function setCreationDateTime($creationDateTime): CriticalmapsUser
     {
         $this->creationDateTime = $creationDateTime;
 
         return $this;
     }
 
-    public function getColorRed()
+    public function getColorRed(): int
     {
         return $this->colorRed;
     }
 
-    public function setColorRed($colorRed)
+    public function setColorRed($colorRed): CriticalmapsUser
     {
         $this->colorRed = $colorRed;
 
         return $this;
     }
 
-    public function getColorGreen()
+    public function getColorGreen(): int
     {
         return $this->colorGreen;
     }
 
-    public function setColorGreen($colorGreen)
+    public function setColorGreen($colorGreen): CriticalmapsUser
     {
         $this->colorGreen = $colorGreen;
 
         return $this;
     }
 
-    public function getColorBlue()
+    public function getColorBlue(): int
     {
         return $this->colorBlue;
     }
 
-    public function setColorBlue($colorBlue)
+    public function setColorBlue($colorBlue): CriticalmapsUser
     {
         $this->colorBlue = $colorBlue;
 
@@ -143,24 +143,24 @@ class CriticalmapsUser implements LocationServiceInterface
         ];
     }
 
-    public function getStartDateTime()
+    public function getStartDateTime(): \DateTime
     {
         return $this->startDateTime;
     }
 
-    public function setStartDateTime($startDateTime)
+    public function setStartDateTime($startDateTime): CriticalmapsUser
     {
         $this->startDateTime = $startDateTime;
 
         return $this;
     }
 
-    public function getEndDateTime()
+    public function getEndDateTime(): ?\DateTime
     {
         return $this->endDateTime;
     }
 
-    public function setEndDateTime($endDateTime)
+    public function setEndDateTime($endDateTime): CriticalmapsUser
     {
         $this->endDateTime = $endDateTime;
 

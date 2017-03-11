@@ -186,7 +186,6 @@ class City
      */
     private $imageName;
 
-
     /**
      * @JMS\Expose
      * @JMS\Type("string")
@@ -238,11 +237,12 @@ class City
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id): City
     {
         $this->id = $id;
-    }
 
+        return $this;
+    }
 
     public function getMainSlug(): CitySlug
     {
@@ -410,7 +410,7 @@ class City
         return $this->isStandardable;
     }
 
-    public function setStandardDayOfWeek($standardDayOfWeek)
+    public function setStandardDayOfWeek($standardDayOfWeek): City
     {
         $this->standardDayOfWeek = $standardDayOfWeek;
 
@@ -422,7 +422,7 @@ class City
         return $this->standardDayOfWeek;
     }
 
-    public function setStandardWeekOfMonth($standardWeekOfMonth)
+    public function setStandardWeekOfMonth($standardWeekOfMonth): City
     {
         $this->standardWeekOfMonth = $standardWeekOfMonth;
 
@@ -576,50 +576,50 @@ class City
         return $this->timezone;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime $createdAt): City
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function setColorRed($colorRed)
+    public function setColorRed($colorRed): City
     {
         $this->colorRed = $colorRed;
 
         return $this;
     }
 
-    public function getColorRed()
+    public function getColorRed(): int
     {
         return $this->colorRed;
     }
 
-    public function setColorGreen($colorGreen)
+    public function setColorGreen($colorGreen): City
     {
         $this->colorGreen = $colorGreen;
 
         return $this;
     }
 
-    public function getColorGreen()
+    public function getColorGreen(): int
     {
         return $this->colorGreen;
     }
 
-    public function setColorBlue($colorBlue)
+    public function setColorBlue($colorBlue): City
     {
         $this->colorBlue = $colorBlue;
 
         return $this;
     }
 
-    public function getColorBlue()
+    public function getColorBlue(): int
     {
         return $this->colorBlue;
     }
