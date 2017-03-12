@@ -32,14 +32,6 @@ define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositio
     };
 
     LivePage.prototype._initMap = function () {
-        var height = $('nav#navigation').css('height');
-        if (!height) {
-            height = $('nav').css('height');
-        }
-
-        $('#map').css('top', height);
-        $('#map').css('height', '100vh');
-
         this._map = new Map('map', []);
         this._map.setView([54, 10], 12);
 
