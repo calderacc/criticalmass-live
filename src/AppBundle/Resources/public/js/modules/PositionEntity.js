@@ -32,7 +32,6 @@ define(['leaflet', 'MarkerEntity'], function () {
     };
 
     PositionEntity.prototype.getColorString = function () {
-        console.log(this);
         var colorRed = this._rgbColor['red'];
         var colorGreen = this._rgbColor['green'];
         var colorBlue = this._rgbColor['blue'];
