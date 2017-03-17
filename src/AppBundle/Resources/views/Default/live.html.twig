@@ -1,5 +1,11 @@
 {% extends 'AppBundle:Template:MasterTemplate.html.twig' %}
 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/leaflet.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/fa-4.6.3.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/app/css/extramarkers.css') }}" />
+{% endblock %}
+
 {% block content %}
 <div id="map">
     <div id="glympse-logo-container">
@@ -14,8 +20,3 @@
 </script>
 {% endblock %}
 
-{% block head %}
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-<link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/fa-4.6.3.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ asset('/bundles/app/css/extramarkers.css') }}" />
-{% endblock %}

@@ -10,7 +10,6 @@ define(['leaflet', 'leaflet-locate'], function () {
     Map.prototype._defaults = {
         tileLayerUrl: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
         mapAttribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        stylesheetAddress: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css',
         detectRetina: true,
         defaultLatitude: 51.0851708,
         defaultLongitude: 5.9692092,
@@ -22,19 +21,8 @@ define(['leaflet', 'leaflet-locate'], function () {
     Map.prototype._$mapContainer = null;
 
     Map.prototype._init = function () {
-        this._loadStyles();
         this._initMap();
         this._addTileLayer();
-    };
-
-    Map.prototype._loadStyles = function () {
-        var $link = $('<link>', {
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: this.settings.stylesheetAddress
-        });
-
-        $link.appendTo('head');
     };
 
     Map.prototype._initMap = function () {
