@@ -2,33 +2,30 @@
 
 namespace AppBundle\ViewStorage;
 
-use AppBundle\Entity\User;
-use AppBundle\EntityInterface\ViewableInterface;
+use AppBundle\Entity\Position;
+use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class ViewStorageCache implements ViewStorageCacheInterface
+class PositionCache
 {
-    /** @var FilesystemAdapter $cache */
+    /** @var AbstractAdapter $cache */
     protected $cache;
 
-    /** @var TokenStorageInterface $tokenStorage */
-    protected $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct()
     {
         $this->cache = new FilesystemAdapter();
-        $this->tokenStorage = $tokenStorage;
     }
 
-    public function countView(ViewableInterface $viewable)
-    {
-        $viewStorageItem = $this->cache->getItem('view_storage');
+    public function getPositionListJson(): string
 
-        if (!$viewStorageItem->isHit()) {
-            $viewStorage = [];
+    public function countView(Position $position)
+    {
+        $cacheItem = $this->cache->getItem('position_cache');
+
+        if (!$cacheItem->isHit()) {
+            $positionStorage = [];
         } else {
-            $viewStorage = $viewStorageItem->get();
+            $positionStorage = $cacheItem->get();
         }
 
         $viewDateTime = new \DateTime('now', new \DateTimeZone('UTC'));

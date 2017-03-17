@@ -7,6 +7,7 @@ use Caldera\GeoBasic\Bounds\Bounds;
 use Caldera\GeoBasic\Coord\Coord;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -31,7 +32,12 @@ class ApiController extends FOSRestController
         if ($bounds) {
             $positionList = $this->getPositionManager()->getCurrentPositionsInBounds($bounds);
         } else {
-            $positionList = $this->getPositionManager()->getCurrentPositions();
+            $positionList = $this->getCachedPositionList();
+
+            if (!$positionList) {
+                $positionList = $this->getPositionManager()->getCurrentPositions();
+                $this->cachePositionList($positionList);
+            }
         }
 
         $view = View::create();
@@ -89,5 +95,32 @@ class ApiController extends FOSRestController
             ->setStatusCode(200);
 
         return $this->handleView($view);
+    }
+
+    protected function cachePositionList(array $positionList): void
+    {
+        $expireInterval = new \DateInterval('PT20S');
+
+        $cache = new FilesystemAdapter();
+
+        $cacheItem = $cache->getItem('position_cache');
+
+        $cacheItem->set($positionList);
+        $cacheItem->expiresAfter($expireInterval);
+
+        $cache->save($cacheItem);
+    }
+
+    protected function getCachedPositionList(): ?array
+    {
+        $cache = new FilesystemAdapter();
+
+        $cacheItem = $cache->getItem('position_cache');
+
+        if ($cacheItem->isHit()) {
+            return $cacheItem->get();
+        }
+
+        return null;
     }
 }
