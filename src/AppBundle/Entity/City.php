@@ -25,6 +25,8 @@ class City
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities")
+     * @ORM\JoinColumn(name="main_slug_id", referencedColumnName="id")
      * @JMS\Expose
      * @JMS\SerializedName("mainSlug")
      * @JMS\Type("AppBundle\Entity\CitySlug")
