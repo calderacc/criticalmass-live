@@ -30,7 +30,7 @@ class RefreshRideListCommand extends ContainerAwareCommand
         $serializer = $this->getContainer()->get('jms_serializer');
 
         /** @var EntityManager $manager */
-        $manager = $this->getContainer()->get('doctrine')->getEntityManager();
+        $manager = $this->getContainer()->get('doctrine')->getManager();
 
         $apiUrl = $this->getContainer()->getParameter('criticalmass.api');
         $apiUrl .= '/ride/list';
