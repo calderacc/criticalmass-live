@@ -32,8 +32,10 @@ define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositio
     };
 
     LivePage.prototype._initMap = function () {
+        var mapCenter = [this._options.latitude, this._options.longitude];
+
         this._map = new Map('map', []);
-        this._map.setView([54, 10], 12);
+        this._map.setView(mapCenter, 12);
 
         this._hash = new L.Hash(this._map.map);
     };

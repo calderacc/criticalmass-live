@@ -16,7 +16,11 @@
 </div>
 
 <script>
-    Live.loadModule('LivePage');
+    {% if ride.hasLocation %}
+    Live.loadModule('LivePage', null, { latitude: {{ ride.latitude }}, longitude: {{ ride.longitude }} });
+    {% else %}
+    Live.loadModule('LivePage', null, { latitude: {{ city.latitude }}, longitude: {{ city.longitude }} });
+    {% endif %}
 </script>
 {% endblock %}
 
