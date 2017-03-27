@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-12 col-sm-6 offset-sm-3">
                 {% if rides | length > 0 %}
-                    <form name="" class="form-inline">
+                    <form name="">
                         <div class="row">
-                            <div class="col-12 text-xs-center">
+                            <div class="col-12 text-center">
                                 <h2>
                                     Auf den Sattel, fertig los
                                 </h2>
@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-12 text-xs-center">
+                            <div class="col-12 text-center">
                                 <p class="lead">
                                     Wo bist du heute unterwegs?
                                 </p>
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-12 text-xs-center">
+                            <div class="col-12 text-center">
                                 <select class="form-control" id="select-ride">
                                     {% for ride in rides %}
                                         {% if (ride.hasLocation() and ride.latitude and ride.longitude) %}
