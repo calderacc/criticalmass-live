@@ -32,6 +32,15 @@ define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositio
     };
 
     LivePage.prototype._initMap = function () {
+        var $navbar = $('nav.navbar');
+        var $map = $('#map');
+
+        var navbarHeight = 56;
+        var windowHeight = $(window).height();
+
+        $map.css('top', navbarHeight + 'px');
+        $map.height(windowHeight - navbarHeight + 'px');
+
         var mapCenter = [this._options.latitude, this._options.longitude];
 
         this._map = new Map('map', []);

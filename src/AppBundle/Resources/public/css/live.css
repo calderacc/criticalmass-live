@@ -6136,15 +6136,12 @@ div.user-position div.user-position-inline {
 
 #glympse-logo-container {
   position: absolute;
-  bottom: 15px;
+  bottom: 30px;
   left: 15px;
   height: 40px;
   width: 150px;
   z-index: 500000;
   opacity: 0.8; }
-
-div#map {
-  height: 100vh; }
 
 .leaflet-control-layers-toggle {
   background-image: url(/bundles/app/img/leaflet/layers.png); }
