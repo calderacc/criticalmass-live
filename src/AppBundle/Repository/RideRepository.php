@@ -20,11 +20,14 @@ class RideRepository extends EntityRepository
 
         $builder = $this->createQueryBuilder('ride');
 
-        $builder->select('ride');
-        $builder->where($builder->expr()->lte('ride.dateTime', '\'' . $startDateTime->format('Y-m-d H:i:s') . '\''));
-        $builder->andWhere($builder->expr()->gte('ride.dateTime', '\'' . $endDateTime->format('Y-m-d H:i:s') . '\''));
+        $builder
+            ->select('ride')
+            ->join('ride.city', 'city')
+            ->where($builder->expr()->lte('ride.dateTime', '\'' . $startDateTime->format('Y-m-d H:i:s') . '\''))
+            ->andWhere($builder->expr()->gte('ride.dateTime', '\'' . $endDateTime->format('Y-m-d H:i:s') . '\''))
+        ;
 
-        $builder->orderBy('ride.dateTime', $order);
+        $builder->orderBy('city.name', $order);
 
         $query = $builder->getQuery();
 
