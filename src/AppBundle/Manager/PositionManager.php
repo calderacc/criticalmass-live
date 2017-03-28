@@ -35,9 +35,13 @@ class PositionManager extends AbstractElasticManager
         return $result;
     }
 
-    public function getCurrentPositions(): array
+    public function getCurrentPositions(\DateInterval $interval = null): array
     {
-        $positionList = $this->positionRepository->findCurrentPositions();
+        if (!$interval) {
+            $interval = new \DateInterval('PT5M');
+        }
+
+        $positionList = $this->positionRepository->findCurrentPositions($interval);
 
         return $positionList;
     }

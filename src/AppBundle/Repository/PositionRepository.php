@@ -7,9 +7,8 @@ use Doctrine\ORM\EntityRepository;
 
 class PositionRepository extends EntityRepository
 {
-    public function findCurrentPositions(int $age = 5): array
+    public function findCurrentPositions(\DateInterval $interval): array
     {
-        $interval = new \DateInterval('PT' . $age . 'M');
         $dateTime = new \DateTime();
         $dateTime->sub($interval);
 
