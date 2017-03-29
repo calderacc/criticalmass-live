@@ -33,22 +33,33 @@ class ApiController extends FOSRestController
 
         if ($bounds) {
             $positionList = $this->getPositionManager()->getCurrentPositionsInBounds($bounds);
+
+            $view = View::create();
+            $view
+                ->setData($positionList)
+                ->setFormat('json')
+                ->setStatusCode(200);
+
+            return $this->handleView($view);
         } else {
-            $positionList = $this->getCachedPositionList();
+            $response = $this->getCachedResponse();
 
-            if (!$positionList) {
+            if (!$response) {
                 $positionList = $this->getPositionManager()->getCurrentPositions();
-                $this->cachePositionList($positionList);
+
+                $view = View::create();
+                $view
+                    ->setData($positionList)
+                    ->setFormat('json')
+                    ->setStatusCode(200);
+
+                $response = $this->handleView($view);
+
+                $this->cacheResponse($response);
             }
+
+            return $response;
         }
-
-        $view = View::create();
-        $view
-            ->setData($positionList)
-            ->setFormat('json')
-            ->setStatusCode(200);
-
-        return $this->handleView($view);
     }
 
     protected function getPositionManager(): PositionManager
@@ -111,25 +122,25 @@ class ApiController extends FOSRestController
         return $cache;
     }
 
-    protected function cachePositionList(array $positionList): void
+    protected function cacheResponse(Response $response): void
     {
         $expireInterval = new \DateInterval('PT20S');
 
         $cache = $this->getCache();
 
-        $cacheItem = $cache->getItem('position_cache');
+        $cacheItem = $cache->getItem('response-cache');
 
-        $cacheItem->set($positionList);
+        $cacheItem->set($response);
         $cacheItem->expiresAfter($expireInterval);
 
         $cache->save($cacheItem);
     }
 
-    protected function getCachedPositionList(): ?array
+    protected function getCachedResponse(): ?Response
     {
         $cache = $this->getCache();
 
-        $cacheItem = $cache->getItem('position_cache');
+        $cacheItem = $cache->getItem('response-cache');
 
         if ($cacheItem->isHit()) {
             return $cacheItem->get();
