@@ -11,6 +11,7 @@ use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Response;
 
 class ApiController extends FOSRestController
 {
@@ -26,7 +27,7 @@ class ApiController extends FOSRestController
      *  }
      * )
      */
-    public function getPositionsAction(Request $request)
+    public function getPositionsAction(Request $request): Response
     {
         $bounds = $this->getBoundsFromRequest($request);
 
@@ -85,7 +86,7 @@ class ApiController extends FOSRestController
      *  description="This is a description of your API method"
      * )
      */
-    public function getRidesAction(Request $request)
+    public function getRidesAction(Request $request): Response
     {
         $rideList = $this->getDoctrine()->getRepository('AppBundle:Ride')->findCurrentRides();
 
