@@ -7,7 +7,8 @@ use Caldera\GeoBasic\Bounds\Bounds;
 use Caldera\GeoBasic\Coord\Coord;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\AbstractAdapter;
+use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -97,11 +98,23 @@ class ApiController extends FOSRestController
         return $this->handleView($view);
     }
 
+    protected function getCache(): AbstractAdapter
+    {
+        $redisConnection = RedisAdapter::createConnection('redis://localhost');
+        $cache = new RedisAdapter(
+            $redisConnection,
+            $namespace = 'criticalmass-live',
+            $defaultLifetime = 0
+        );
+
+        return $cache;
+    }
+
     protected function cachePositionList(array $positionList): void
     {
         $expireInterval = new \DateInterval('PT20S');
 
-        $cache = new FilesystemAdapter();
+        $cache = $this->getCache();
 
         $cacheItem = $cache->getItem('position_cache');
 
@@ -113,7 +126,7 @@ class ApiController extends FOSRestController
 
     protected function getCachedPositionList(): ?array
     {
-        $cache = new FilesystemAdapter();
+        $cache = $this->getCache();
 
         $cacheItem = $cache->getItem('position_cache');
 
