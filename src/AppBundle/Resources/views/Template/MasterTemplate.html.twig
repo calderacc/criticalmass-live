@@ -17,6 +17,18 @@
     <script src="{{ asset('bundles/app/js/requirejs/require.js') }}"></script>
     <script src="{{ asset('bundles/app/js/Live.js') }}"></script>
 
+    <meta property="fb:app_id" content="216780188685195" />
+    <meta property="og:type" content="Website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="criticalmass.live" />
+    <meta property="og:image" content="https://criticalmass.live/img/preview.jpg" />
+    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@calderacc" />
+    <meta name="twitter:creator" content="@maltehuebner" />
+    <meta name="twitter:image" content="https://criticalmass.live/img/preview.jpg" />
+
     {% block head %}{% endblock %}
 
     <link rel="stylesheet" href="{{ asset('bundles/app/css/fa-4.6.3.css') }}"/>
