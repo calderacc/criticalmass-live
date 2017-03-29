@@ -1,63 +1,69 @@
-<div class="row">
-	<div class="col-xs-12">
-		<h1>
-			Live dabei: Teile deinen Aufenthaltsort
-		</h1>
+{% extends 'AppBundle:Template:MasterTemplate.html.twig' %}
+
+{% block content %}
+<div class="container mt-8">
+	<div class="row">
+		<div class="col-12">
+			<h1 class="h3">
+				Live dabei: Teile deinen Aufenthaltsort
+			</h1>
+		</div>
+	</div>
+
+	<div class="row mt-2">
+		<div class="col-12 col-md-6">
+			<h3 class="h4">
+				Mit Glympse teilen
+			</h3>
+
+			<p class="lead">
+				Mit <a href="https://www.glympse.com/">Glympse</a> kannst du einen Aufenthaltsort mit deinen Freunden teilen.
+			</p>
+
+			<p>
+				Wenn du während der Critical Mass deinen Standort mit uns teilst, können andere Teilnehmer auf unserer Karte sehen, wo die Masse gerade entlangfährt. Es ist ganz einfach:
+			</p>
+
+			<ol>
+				<li>Lade dir die kostenlose <a href="https://www.glympse.com/get_glympse">Glympse</a>-App herunter. Glympse gibt es für <a href="https://play.google.com/store/apps/details?id=com.glympse.android.glympse" class="btn btn-secondary"><i class="fa fa-android"></i> Android</a>, <a href="https://itunes.apple.com/de/app/glympse-zeig-deinen-freunden/id330316698?mt=8" class="btn btn-secondary"><i class="fa fa-apple"></i> iOS</a> und <a href="http://www.windowsphone.com/de-de/store/app/glympse/ec418e52-b788-e011-986b-78e7d1fa76f8" class="btn btn-secondary"><i class="fa fa-windows"></i> Windows Phone</a>.</li>
+				<li>Erstelle einen neuen Glympse über vier Stunden, sobald sich die Masse in Bewegung setzt.</li>
+				<li>Lade uns ein! Schicke uns direkt aus der App eine Einladung an <code>hamburg@criticalmass.in</code> oder <code>berlin@criticalmass.in</code> oder <code>koeln@criticalmass.in</code> oder wo auch immer du gerade unterwegs bist.</li>
+				<li>Fahre los: Glympse gewährt uns für den von dir eingestellten Zeitraum Zugriff auf deinen Aufenthaltsort und deine Position wird auf unserer Karte angezeigt.</li>
+				<li>Feierabend? Denke daran, deinen Glympse nach der Tour zu beenden, falls der von dir eingestellte Zeitraum noch nicht abgelaufen sein sollte. Und falls es mal länger dauern sollte: Du kannst in der App den Zeitraum deiner Übertragung manuell um jeweils 15 Minuten verlängern.</li>
+			</ol>
+		</div>
+
+		<div class="col-12 col-md-6">
+			<h3 class="h4">
+				Mit Critical Maps teilen
+			</h3>
+
+			<p class="lead">
+				Mit <a href="http://criticalmaps.net/">Critical Maps</a> kannst du sehen, wo die Critical Mass gerade entlangrollt.
+			</p>
+
+			<p>
+				Wenn du während der Critical Mass deinen Standort mit uns teilst, können andere Teilnehmer auf unserer Karte sehen, wo die Masse gerade entlangfährt. Es ist ganz einfach:
+			</p>
+
+			<ol>
+				<li>
+					Lade dir die kostenlose <a href="http://criticalmaps.net/">Critical-Maps</a>-App herunter. Critical Maps gibt es für <a href="https://play.google.com/store/apps/details?id=de.stephanlindauer.criticalmaps" class="btn btn-secondary"><i class="fa fa-android"></i> Android</a> und <a href="https://itunes.apple.com/de/app/critical-mass-berlin/id918669647" class="btn btn-secondary"><i class="fa fa-apple"></i> iOS</a>.
+				</li>
+
+				<li>
+					Das war es schon fast: Starte die App und fahre los.
+				</li>
+
+				<li>
+					Denk daran, dass du unter dem Menüpunkt „Einstellungen“ in der App die GPS-Funktionalität deaktivieren kannst, wenn du nicht auf der Karte auftauchen willst.
+				</li>
+			</ol>
+
+			<p>
+				Dein Standort ist sowohl in der App als auch unter <a href="http://criticalmaps.net/map">criticalmaps.net/map</a> und <a href="https://criticalmass.live/">criticalmass.live</a> zu sehen.
+			</p>
+		</div>
 	</div>
 </div>
-
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		<h3>
-			Mit Glympse teilen
-		</h3>
-
-		<p class="lead">
-			Mit <a href="https://www.glympse.com/">Glympse</a> kannst du einen Aufenthaltsort mit deinen Freunden teilen.
-		</p>
-
-		<p>
-			Wenn du während der Critical Mass deinen Standort mit uns teilst, können andere Teilnehmer auf unserer Karte sehen, wo die Masse gerade entlangfährt. Es ist ganz einfach:
-		</p>
-
-		<ol>
-			<li>Lade dir die kostenlose <a href="https://www.glympse.com/get_glympse">Glympse</a>-App herunter. Glympse gibt es für <a href="https://play.google.com/store/apps/details?id=com.glympse.android.glympse" class="btn btn-secondary"><i class="fa fa-android"></i> Android</a>, <a href="https://itunes.apple.com/de/app/glympse-zeig-deinen-freunden/id330316698?mt=8" class="btn btn-secondary"><i class="fa fa-apple"></i> iOS</a> und <a href="http://www.windowsphone.com/de-de/store/app/glympse/ec418e52-b788-e011-986b-78e7d1fa76f8" class="btn btn-secondary"><i class="fa fa-windows"></i> Windows Phone</a>.</li>
-			<li>Erstelle einen neuen Glympse über vier Stunden, sobald sich die Masse in Bewegung setzt.</li>
-		    <li>Lade uns ein! Schicke uns direkt aus der App eine Einladung an <code>hamburg@criticalmass.in</code> oder <code>berlin@criticalmass.in</code> oder <code>koeln@criticalmass.in</code> oder wo auch immer du gerade unterwegs bist.</li>
-		    <li>Fahre los: Glympse gewährt uns für den von dir eingestellten Zeitraum Zugriff auf deinen Aufenthaltsort und deine Position wird auf unserer Karte angezeigt.</li>
-		    <li>Feierabend? Denke daran, deinen Glympse nach der Tour zu beenden, falls der von dir eingestellte Zeitraum noch nicht abgelaufen sein sollte. Und falls es mal länger dauern sollte: Du kannst in der App den Zeitraum deiner Übertragung manuell um jeweils 15 Minuten verlängern.</li>
-		</ol>
-	</div>
-
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		<h3>
-			Mit Critical Maps teilen
-		</h3>
-
-		<p class="lead">
-			Mit <a href="http://criticalmaps.net/">Critical Maps</a> kannst du sehen, wo die Critical Mass gerade entlangrollt.
-		</p>
-
-		<p>
-			Wenn du während der Critical Mass deinen Standort mit uns teilst, können andere Teilnehmer auf unserer Karte sehen, wo die Masse gerade entlangfährt. Es ist ganz einfach:
-		</p>
-
-		<ol>
-			<li>
-				Lade dir die kostenlose <a href="http://criticalmaps.net/">Critical-Maps</a>-App herunter. Critical Maps gibt es für <a href="https://play.google.com/store/apps/details?id=de.stephanlindauer.criticalmaps" class="btn btn-secondary"><i class="fa fa-android"></i> Android</a> und <a href="https://itunes.apple.com/de/app/critical-mass-berlin/id918669647" class="btn btn-secondary"><i class="fa fa-apple"></i> iOS</a>.
-			</li>
-
-			<li>
-				Das war es schon fast: Starte die App und fahre los.
-			</li>
-
-			<li>
-				Denk daran, dass du unter dem Menüpunkt „Einstellungen“ in der App die GPS-Funktionalität deaktivieren kannst, wenn du nicht auf der Karte auftauchen willst.
-			</li>
-		</ol>
-
-		<p>
-			Dein Standort ist sowohl in der App als auch unter <a href="http://criticalmaps.net/map">criticalmaps.net/map</a> und <a href="https://criticalmass.live/">criticalmass.live</a> zu sehen.
-		</p>
-	</div>
-</div>
+{% endblock %}
