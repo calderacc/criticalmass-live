@@ -10,8 +10,6 @@ class DefaultController extends AbstractController
     {
         $rides = $this->getRideList();
 
-        $ride = array_pop($rides);
-
         return $this->render(
             'AppBundle:Default:index.html.twig',
             [
