@@ -6029,3 +6029,8 @@ div.user-position div.user-position-inline {
 
 .mt-9 {
   margin-top: 5rem; }
+
+.navbar-inverse .navbar-nav .nav-link {
+  color: white !important; }
+  .navbar-inverse .navbar-nav .nav-link:hover {
+    color: white !important; }
