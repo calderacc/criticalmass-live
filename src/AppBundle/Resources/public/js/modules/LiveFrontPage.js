@@ -1,4 +1,4 @@
-define([], function () {
+define(['leaflet'], function () {
     LiveFrontPage = function (context, options) {
         this._options = options;
 
