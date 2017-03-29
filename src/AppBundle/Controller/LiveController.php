@@ -16,10 +16,10 @@ class LiveController extends AbstractController
 
         return $this->render(
             'AppBundle:Default:live.html.twig',
-            array(
+            [
                 'ride' => $ride,
                 'city' => $city,
-            )
+            ]
         );
     }
 }
