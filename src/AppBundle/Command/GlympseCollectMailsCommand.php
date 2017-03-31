@@ -107,9 +107,18 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
 
     protected function grepCitySlug(IncomingMail $mail): ?string
     {
-        $domainName = $this->getContainer()->getParameter('glympse.mail.domain');
-        $domainName = str_replace('.', '\\.', $domainName);
+        $citySlug = $this->getCitySlugFromMail($mail, 'criticalmass.live');
 
+        if (!$citySlug) {
+            $citySlug = $this->getCitySlugFromMail($mail, 'criticalmass.in');
+        }
+
+        return $citySlug;
+    }
+
+    protected function getCitySlugFromMail(IncomingMail $mail, string $domainName): ?string
+    {
+        $domainName = str_replace('.', '\\.', $domainName);
         $toString = $mail->toString;
 
         preg_match('/([a-z0-9\-]{3,})\@'.$domainName.'/i', $toString, $matches);
