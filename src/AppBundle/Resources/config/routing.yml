@@ -25,3 +25,10 @@ caldera_criticalmass_live_api_ride:
 caldera_criticalmass_live_content:
     path:     /content/{slug}
     defaults: { _controller: AppBundle:Static:display }
+
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: AppBundle:Redirecting:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]
