@@ -90,7 +90,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         return $unreadMails;
     }
 
-    protected function grepInvitationCode(IncomingMail $mail): string
+    protected function grepInvitationCode(IncomingMail $mail): ?string
     {
         $plainBody = $mail->textPlain;
 
@@ -105,7 +105,7 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
         return $invitationCode;
     }
 
-    protected function grepCitySlug(IncomingMail $mail): string
+    protected function grepCitySlug(IncomingMail $mail): ?string
     {
         $domainName = $this->getContainer()->getParameter('glympse.mail.domain');
         $domainName = str_replace('.', '\\.', $domainName);
