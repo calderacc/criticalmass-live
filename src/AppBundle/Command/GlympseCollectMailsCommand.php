@@ -58,6 +58,8 @@ class GlympseCollectMailsCommand extends ContainerAwareCommand
                 $this->inbox->moveMail($unreadMail->id, 'INBOX.done');
             } else {
                 $this->output->writeln(sprintf('Could not grep city slug or invitation code from mail <info>%d</info>', $unreadMail->id));
+
+                $this->inbox->moveMail($unreadMail->id, 'INBOX.trash');
             }
         }
 
