@@ -74,4 +74,9 @@ class CitySlug
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->slug;
+    }
 }
