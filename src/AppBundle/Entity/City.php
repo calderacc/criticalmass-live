@@ -25,7 +25,7 @@ class City
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities")
+     * @ORM\ManyToOne(targetEntity="CitySlug", inversedBy="cities", cascade={"merge"}, fetch="LAZY")
      * @ORM\JoinColumn(name="main_slug_id", referencedColumnName="id")
      * @JMS\Expose
      * @JMS\SerializedName("mainSlug")
@@ -246,12 +246,12 @@ class City
         return $this;
     }
 
-    public function getMainSlug(): CitySlug
+    public function getMainSlug(): ?CitySlug
     {
         return $this->mainSlug;
     }
 
-    public function setMainSlug(CitySlug $citySlug): City
+    public function setMainSlug(CitySlug $citySlug = null): City
     {
         $this->mainSlug = $citySlug;
 
