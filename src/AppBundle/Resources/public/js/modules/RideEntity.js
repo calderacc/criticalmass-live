@@ -1,4 +1,4 @@
-define(['leaflet', 'MarkerEntity', 'dateformat', 'ModalButton', 'CloseModalButton'], function () {
+define(['showdown', 'leaflet', 'MarkerEntity', 'dateformat', 'ModalButton', 'CloseModalButton'], function (showdown) {
     RideEntity = function () {
     };
 
@@ -46,7 +46,8 @@ define(['leaflet', 'MarkerEntity', 'dateformat', 'ModalButton', 'CloseModalButto
         content += '</dl>';
 
         if (this._description) {
-            content += '<p>' + this._description + '</p>';
+            var converter = new showdown.Converter();
+            content += converter.makeHtml(this._description);
         }
 
         this._modal.setBody(content);
