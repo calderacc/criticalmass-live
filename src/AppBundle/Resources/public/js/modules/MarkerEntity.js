@@ -24,11 +24,11 @@ define(['BaseEntity', 'leaflet', 'leaflet-extramarkers', 'Modal'], function () {
         this._modal = new Modal();
         this._modal.setSize('md');
 
-        this._setupModalContent();
-
         var that = this;
 
         this._marker.on('click', function () {
+            that._setupModalContent();
+
             that._modal.show();
         });
     };
