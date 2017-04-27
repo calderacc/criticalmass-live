@@ -19,7 +19,8 @@ require.config({
         'leaflet-locate': '/bundles/app/js/leaflet/L.Control.Locate',
         'leaflet-groupedlayer': '/bundles/app/js/leaflet/leaflet.groupedlayercontrol',
         'leaflet-extramarkers': '/bundles/app/js/leaflet/ExtraMarkers',
-        'dateformat': '/bundles/app/js/dateformat/dateformat'
+        'dateformat': '/bundles/app/js/dateformat/dateformat',
+        'showdown': '/bundles/app/js/markdown/showdown.min'
     },
     shim: {
         'leaflet-hash': {
