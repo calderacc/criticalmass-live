@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        criticalmass.live &mdash; Critical Mass Live Tracking
+    </title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <meta property="fb:app_id" content="216780188685195" />
+    <meta property="og:type" content="Website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="criticalmass.live" />
+    <meta property="og:image" content="https://criticalmass.live/bundles/app/img/preview.jpg" />
+    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@calderacc" />
+    <meta name="twitter:creator" content="@maltehuebner" />
+    <meta name="twitter:image" content="https://criticalmass.live/bundles/app/img/preview.jpg" />
+
+    {% block head %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/fa-4.6.3.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/live.css') }}"/>
+</head>
+
+<body>
+{% block content %}{% endblock %}
+
+{% include('AppBundle:Includes:_piwik.html.twig') %}
+
+<script src="{{ asset('bundles/app/js/jquery/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/materialize/bin/materialize.min.js') }}"></script>
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+<script src="{{ asset('bundles/app/js/requirejs/require.js') }}"></script>
+<script src="{{ asset('bundles/app/js/Live.js') }}"></script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>
+
