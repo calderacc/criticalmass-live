@@ -48,7 +48,7 @@ class CriticalmapsCollectPositionsCommand extends ContainerAwareCommand
     protected function fetchLocations()
     {
         $curl = new Curl();
-        $curl->get('http://api.criticalmaps.net/get');
+        $curl->get($this->getContainer()->getParameter('criticalmaps.api'));
 
         $result = json_decode($curl->response);
 

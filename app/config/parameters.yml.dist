@@ -19,6 +19,7 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     criticalmass.api: http://criticalmass.cm/app_dev.php/api
+    criticalmaps.api: http://api.criticalmaps.net/get
 
     glympse.imap.hostname: mail.criticalmass.live
     glympse.imap.port: 993
