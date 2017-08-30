@@ -28,12 +28,6 @@ class Position
     protected $glympseTicket;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
-     * @ORM\JoinColumn(name="criticalmaps_user", referencedColumnName="id")
-     */
-    protected $criticalmapsUser;
-
-    /**
      * @ORM\Column(type="float")
      * @JMS\Expose()
      */
@@ -212,18 +206,6 @@ class Position
         return $this->glympseTicket;
     }
 
-    public function setCriticalmapsUser(CriticalmapsUser $criticalmapsUser): Position
-    {
-        $this->criticalmapsUser = $criticalmapsUser;
-
-        return $this;
-    }
-
-    public function getCriticalmapsUser(): ?CriticalmapsUser
-    {
-        return $this->criticalmapsUser;
-    }
-
     public function getPin(): string
     {
         return $this->latitude . ',' . $this->longitude;
@@ -231,11 +213,7 @@ class Position
 
     public function getLocationService(): LocationServiceInterface
     {
-        if ($this->glympseTicket) {
-            return $this->glympseTicket;
-        } else {
-            return $this->criticalmapsUser;
-        }
+        return $this->glympseTicket;
     }
 
     /**
