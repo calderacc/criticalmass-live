@@ -20,15 +20,3 @@ parameters:
 
     criticalmass.api: http://criticalmass.cm/app_dev.php/api
     criticalmaps.api: http://api.criticalmaps.net/get
-
-    glympse.imap.hostname: mail.criticalmass.live
-    glympse.imap.port: 993
-    glympse.imap.username: glympse@criticalmass.live
-    glympse.imap.password: wrgethfgmhdffgsdfa
-
-    glympse.mail.domain: criticalmass.live
-
-    glympse.api.hostname: weihwegowehg
-    glympse.api.key: 4öwoehgwerg
-    glympse.api.username: ergergreg
-    glympse.api.password: wrgergreg

@@ -22,12 +22,6 @@ class Position
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GlympseTicket", inversedBy="positions")
-     * @ORM\JoinColumn(name="glympse_ticket_id", referencedColumnName="id")
-     */
-    protected $glympseTicket;
-
-    /**
      * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
      * @ORM\JoinColumn(name="criticalmaps_user", referencedColumnName="id")
      */
@@ -200,18 +194,6 @@ class Position
         return $this->creationDateTime;
     }
 
-    public function setGlympseTicket(GlympseTicket $glympseTicket = null): Position
-    {
-        $this->glympseTicket = $glympseTicket;
-
-        return $this;
-    }
-
-    public function getGlympseTicket(): ?GlympseTicket
-    {
-        return $this->glympseTicket;
-    }
-
     public function setCriticalmapsUser(CriticalmapsUser $criticalmapsUser): Position
     {
         $this->criticalmapsUser = $criticalmapsUser;
@@ -231,11 +213,7 @@ class Position
 
     public function getLocationService(): LocationServiceInterface
     {
-        if ($this->glympseTicket) {
-            return $this->glympseTicket;
-        } else {
-            return $this->criticalmapsUser;
-        }
+        return $this->criticalmapsUser;
     }
 
     /**
