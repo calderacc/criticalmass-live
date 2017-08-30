@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\EntityInterface\LocationServiceInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 
