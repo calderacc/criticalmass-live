@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Position;
 use AppBundle\Manager\PositionManager;
 use Caldera\GeoBasic\Bounds\Bounds;
 use Caldera\GeoBasic\Coord\Coord;
+use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use JMS\Serializer\Serializer;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,6 +63,26 @@ class ApiController extends FOSRestController
 
             return $response;
         }
+    }
+
+    /**
+     * @ApiDoc()
+     */
+    public function postPositionsAction(Request $request): Response
+    {
+        $positionDataList = json_decode($request->getContent());
+
+        foreach ($positionDataList as $positionData) {
+            $position = $this->getSerializer()->deserialize(json_encode($positionData), Position::class, 'json');
+
+            $this->getManager()->persist($position);
+        }
+
+        $this->getManager()->flush();
+
+        $response = new Response();
+
+        return $response;
     }
 
     protected function getPositionManager(): PositionManager
@@ -147,5 +170,15 @@ class ApiController extends FOSRestController
         }
 
         return null;
+    }
+
+    protected function getSerializer(): Serializer
+    {
+        return $this->get('jms_serializer');
+    }
+
+    protected function getManager(): EntityManager
+    {
+        return $this->get('doctrine')->getManager();
     }
 }
