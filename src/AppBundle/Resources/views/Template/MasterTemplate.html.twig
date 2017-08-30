@@ -42,20 +42,20 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="{{ path('caldera_criticalmass_live_frontpage') }}">
+        <a class="navbar-brand" href="{{ path('live_frontpage') }}">
             criticalmass.live
         </a>
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a href="{{ path('caldera_criticalmass_live_content', { slug: 'was-ist-critical-mass' }) }}" class="nav-link">
+                <a href="{{ path('live_content', { slug: 'was-ist-critical-mass' }) }}" class="nav-link">
                     <i class="fa fa-info" aria-hidden="true"></i>
                     Was ist Critical Mass?
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('caldera_criticalmass_live_content', { slug: 'so-funktioniert-critical-mass-live' }) }}">
+                <a class="nav-link" href="{{ path('live_content', { slug: 'so-funktioniert-critical-mass-live' }) }}">
                     <i class="fa fa-bicycle" aria-hidden="true"></i>
                     Live Tracking?
                 </a>
