@@ -95,7 +95,7 @@ define(['leaflet', 'Factory', 'Container'], function (L, Factory) {
         }
         $.support.cors = true;
 
-        var route = Routing.generate('caldera_criticalmass_live_api_position');
+        var route = Routing.generate('api_positions_get');
 
         $.ajax({
             type: 'GET',

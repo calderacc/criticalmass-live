@@ -158,7 +158,7 @@ define(['Map', 'Container', 'MapLayerControl', 'MapLocationControl', 'MapPositio
             }
         }
 
-        var route = Routing.generate('caldera_criticalmass_live_api_ride');
+        var route = Routing.generate('api_ride');
 
         $.ajax({
             type: 'GET',
