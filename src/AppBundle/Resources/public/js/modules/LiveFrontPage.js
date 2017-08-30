@@ -28,7 +28,7 @@ define(['leaflet'], function () {
     };
 
     LiveFrontPage.prototype._forwardToLive = function (citySlug) {
-        var url = Routing.generate('caldera_criticalmass_live_live_city', {citySlug: citySlug}, true);
+        var url = Routing.generate('live_city', {citySlug: citySlug}, true);
 
         window.location.replace(url);
     };

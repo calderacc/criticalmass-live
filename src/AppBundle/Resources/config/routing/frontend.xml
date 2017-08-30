@@ -4,16 +4,16 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="caldera_criticalmass_live_frontpage" path="/">
+    <route id="live_frontpage" path="/">
         <default key="_controller">AppBundle:Default:index</default>
     </route>
 
-    <route id="caldera_criticalmass_live_live_city" path="/{citySlug}">
+    <route id="live_city" path="/{citySlug}">
         <default key="_controller">AppBundle:Live:city</default>
         <option key="expose">true</option>
     </route>
 
-    <route id="caldera_criticalmass_live_content" path="/content/{slug}">
+    <route id="live_content" path="/content/{slug}">
         <default key="_controller">AppBundle:Static:display</default>
     </route>
 
