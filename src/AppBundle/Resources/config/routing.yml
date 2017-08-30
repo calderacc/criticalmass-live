@@ -15,6 +15,13 @@ caldera_criticalmass_live_api_position:
     options:
         expose: true
 
+caldera_criticalmass_live_api_position_post:
+    path:     /api/positions
+    defaults: { _controller: AppBundle:Api:postPositions }
+    methods: ['POST']
+    options:
+        expose: true
+
 caldera_criticalmass_live_api_ride:
     path:     /api/rides
     defaults: { _controller: AppBundle:Api:getRides }
