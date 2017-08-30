@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="caldera_criticalmass_live_frontpage" path="/">
+        <default key="_controller">AppBundle:Default:index</default>
+    </route>
+
+    <route id="caldera_criticalmass_live_live_city" path="/{citySlug}">
+        <default key="_controller">AppBundle:Live:city</default>
+        <option key="expose">true</option>
+    </route>
+
+    <route id="caldera_criticalmass_live_content" path="/content/{slug}">
+        <default key="_controller">AppBundle:Static:display</default>
+    </route>
+
+    <route id="remove_trailing_slash" path="/{url}" methods="GET">
+        <default key="_controller">AppBundle:Redirecting:removeTrailingSlash</default>
+        <requirement key="url">.*/$</requirement>
+    </route>
+</routes>
