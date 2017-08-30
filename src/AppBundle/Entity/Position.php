@@ -22,12 +22,6 @@ class Position
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GlympseTicket", inversedBy="positions")
-     * @ORM\JoinColumn(name="glympse_ticket_id", referencedColumnName="id")
-     */
-    protected $glympseTicket;
-
-    /**
      * @ORM\Column(type="float")
      * @JMS\Expose()
      */
@@ -192,47 +186,5 @@ class Position
     public function getCreationDateTime(): ?\DateTime
     {
         return $this->creationDateTime;
-    }
-
-    public function setGlympseTicket(GlympseTicket $glympseTicket = null): Position
-    {
-        $this->glympseTicket = $glympseTicket;
-
-        return $this;
-    }
-
-    public function getGlympseTicket(): ?GlympseTicket
-    {
-        return $this->glympseTicket;
-    }
-
-    public function getPin(): string
-    {
-        return $this->latitude . ',' . $this->longitude;
-    }
-
-    public function getLocationService(): LocationServiceInterface
-    {
-        return $this->glympseTicket;
-    }
-
-    /**
-     * @JMS\VirtualProperty()
-     * @JMS\SerializedName("providerName")
-     */
-    public function getLocationServiceName(): string
-    {
-        return $this->getLocationService()->getName();
-    }
-
-    /**
-     * @JMS\VirtualProperty()
-     * @JMS\SerializedName("rgbColor")
-     */
-    public function getRgbColor(): array
-    {
-        $locationService = $this->getLocationService();
-
-        return $locationService->getRgbColor();
     }
 }

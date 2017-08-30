@@ -16,7 +16,6 @@ class PositionRepository extends EntityRepository
 
         $qb
             ->where($qb->expr()->gte('p.creationDateTime', ':dateTime'))
-            ->addGroupBy('p.glympseTicket')
             ->setParameter('dateTime', $dateTime->format('Y-m-d H:i:s'))
         ;
 
