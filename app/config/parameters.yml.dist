@@ -17,6 +17,3 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    criticalmass.api: http://criticalmass.cm/app_dev.php/api
-    criticalmaps.api: http://api.criticalmaps.net/get

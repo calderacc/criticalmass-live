@@ -22,12 +22,6 @@ class Position
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CriticalmapsUser", inversedBy="positions")
-     * @ORM\JoinColumn(name="criticalmaps_user", referencedColumnName="id")
-     */
-    protected $criticalmapsUser;
-
-    /**
      * @ORM\Column(type="float")
      * @JMS\Expose()
      */
@@ -192,47 +186,5 @@ class Position
     public function getCreationDateTime(): ?\DateTime
     {
         return $this->creationDateTime;
-    }
-
-    public function setCriticalmapsUser(CriticalmapsUser $criticalmapsUser): Position
-    {
-        $this->criticalmapsUser = $criticalmapsUser;
-
-        return $this;
-    }
-
-    public function getCriticalmapsUser(): ?CriticalmapsUser
-    {
-        return $this->criticalmapsUser;
-    }
-
-    public function getPin(): string
-    {
-        return $this->latitude . ',' . $this->longitude;
-    }
-
-    public function getLocationService(): LocationServiceInterface
-    {
-        return $this->criticalmapsUser;
-    }
-
-    /**
-     * @JMS\VirtualProperty()
-     * @JMS\SerializedName("providerName")
-     */
-    public function getLocationServiceName(): string
-    {
-        return $this->getLocationService()->getName();
-    }
-
-    /**
-     * @JMS\VirtualProperty()
-     * @JMS\SerializedName("rgbColor")
-     */
-    public function getRgbColor(): array
-    {
-        $locationService = $this->getLocationService();
-
-        return $locationService->getRgbColor();
     }
 }
