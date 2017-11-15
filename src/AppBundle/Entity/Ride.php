@@ -179,11 +179,6 @@ class Ride
      */
     protected $participationsNumberNo = 0;
 
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -354,15 +349,39 @@ class Ride
         return $this->latitude . ',' . $this->longitude;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function setParticipationsNumberYes($participationsNumberYes)
     {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt): Ride
-    {
-        $this->createdAt = $createdAt;
+        $this->participationsNumberYes = $participationsNumberYes;
 
         return $this;
+    }
+
+    public function getParticipationsNumberYes()
+    {
+        return $this->participationsNumberYes;
+    }
+
+    public function setParticipationsNumberMaybe($participationsNumberMaybe)
+    {
+        $this->participationsNumberMaybe = $participationsNumberMaybe;
+
+        return $this;
+    }
+
+    public function getParticipationsNumberMaybe()
+    {
+        return $this->participationsNumberMaybe;
+    }
+
+    public function setParticipationsNumberNo($participationsNumberNo)
+    {
+        $this->participationsNumberNo = $participationsNumberNo;
+
+        return $this;
+    }
+
+    public function getParticipationsNumberNo()
+    {
+        return $this->participationsNumberNo;
     }
 }

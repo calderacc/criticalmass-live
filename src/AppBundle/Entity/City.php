@@ -108,62 +108,6 @@ class City
     protected $slugs;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @JMS\SerializedName("isStandardable")
-     * @JMS\Expose
-     */
-    protected $isStandardable = false;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     * @JMS\SerializedName("standardDayOfWeek")
-     * @JMS\Expose
-     */
-    protected $standardDayOfWeek;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     * @JMS\Expose
-     */
-    protected $standardWeekOfMonth;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @JMS\Expose
-     */
-    protected $isStandardableTime = false;
-
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     * @JMS\Expose
-     */
-    protected $standardTime;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @JMS\Expose
-     */
-    protected $isStandardableLocation = false;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @JMS\Expose
-     */
-    protected $standardLocation;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     * @JMS\Expose
-     */
-    protected $standardLatitude = 0;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     * @JMS\Expose
-     */
-    protected $standardLongitude = 0;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      * @JMS\Expose
      */
@@ -193,18 +137,6 @@ class City
      * @JMS\Type("string")
      */
     protected $timezone;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @JMS\Expose
-     */
-    protected $threadNumber = 0;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @JMS\Expose
-     */
-    protected $postNumber = 0;
 
     /**
      * @ORM\Column(type="integer")
@@ -388,175 +320,50 @@ class City
         return $this;
     }
 
-    public function setDescription(string $description): City
+    public function setDescription(string $description = null): City
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setIsStandardable(bool $isStandardable): City
-    {
-        $this->isStandardable = $isStandardable;
-
-        return $this;
-    }
-
-    public function getIsStandardable(): bool
-    {
-        return $this->isStandardable;
-    }
-
-    public function setStandardDayOfWeek($standardDayOfWeek): City
-    {
-        $this->standardDayOfWeek = $standardDayOfWeek;
-
-        return $this;
-    }
-
-    public function getStandardDayOfWeek()
-    {
-        return $this->standardDayOfWeek;
-    }
-
-    public function setStandardWeekOfMonth($standardWeekOfMonth): City
-    {
-        $this->standardWeekOfMonth = $standardWeekOfMonth;
-
-        return $this;
-    }
-
-    public function getStandardWeekOfMonth()
-    {
-        return $this->standardWeekOfMonth;
-    }
-
-    public function setStandardTime($standardTime)
-    {
-        $this->standardTime = $standardTime;
-
-        return $this;
-    }
-
-    public function getStandardTime()
-    {
-        return $this->standardTime;
-    }
-
-    public function setStandardLocation($standardLocation)
-    {
-        $this->standardLocation = $standardLocation;
-
-        return $this;
-    }
-
-    public function getStandardLocation()
-    {
-        return $this->standardLocation;
-    }
-
-    public function setStandardLatitude($standardLatitude)
-    {
-        $this->standardLatitude = $standardLatitude;
-
-        return $this;
-    }
-
-    public function getStandardLatitude()
-    {
-        return $this->standardLatitude;
-    }
-
-    public function setStandardLongitude($standardLongitude)
-    {
-        $this->standardLongitude = $standardLongitude;
-
-        return $this;
-    }
-
-    public function getStandardLongitude()
-    {
-        return $this->standardLongitude;
-    }
-
-    public function setCityPopulation($cityPopulation)
-    {
-        $this->cityPopulation = $cityPopulation;
-
-        return $this;
-    }
-
-    public function getCityPopulation()
-    {
-        return $this->cityPopulation;
-    }
-
-    public function setPunchLine($punchLine)
+    public function setPunchLine(string $punchLine = null): City
     {
         $this->punchLine = $punchLine;
 
         return $this;
     }
 
-    public function getPunchLine()
+    public function getPunchLine(): ?string
     {
         return $this->punchLine;
     }
 
-    public function setLongDescription($longDescription)
+    public function setLongDescription(string $longDescription = null): City
     {
         $this->longDescription = $longDescription;
 
         return $this;
     }
 
-    public function getLongDescription()
+    public function getLongDescription(): ?string
     {
         return $this->longDescription;
     }
 
-    public function setIsArchived(bool $isArchived)
-    {
-        $this->isArchived = $isArchived;
-
-        return $this;
-    }
-
-    public function setIsStandardableLocation($isStandardableLocation)
-    {
-        $this->isStandardableLocation = $isStandardableLocation;
-
-        return $this;
-    }
-
-    public function getIsStandardableLocation()
-    {
-        return $this->isStandardableLocation;
-    }
-
-    public function setIsStandardableTime($isStandardableTime)
-    {
-        $this->isStandardableTime = $isStandardableTime;
-
-        return $this;
-    }
-
-    public function getIsStandardableTime()
-    {
-        return $this->isStandardableTime;
-    }
-
-    public function setImageName($imageName)
+    public function setImageName(string $imageName = null): City
     {
         $this->imageName = $imageName;
+
+        return $this;
     }
 
-    public function getImageName()
+    public function getImageName(): ?string
     {
         return $this->imageName;
     }
@@ -566,31 +373,19 @@ class City
         return $this->latitude . ',' . $this->longitude;
     }
 
-    public function setTimezone($timezone)
+    public function setTimezone(string $timezone = 'Europe/Berlin'): City
     {
         $this->timezone = $timezone;
 
         return $this;
     }
 
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt): City
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function setColorRed($colorRed): City
+    public function setColorRed(int $colorRed): City
     {
         $this->colorRed = $colorRed;
 
@@ -602,7 +397,7 @@ class City
         return $this->colorRed;
     }
 
-    public function setColorGreen($colorGreen): City
+    public function setColorGreen(int $colorGreen): City
     {
         $this->colorGreen = $colorGreen;
 
@@ -614,7 +409,7 @@ class City
         return $this->colorGreen;
     }
 
-    public function setColorBlue($colorBlue): City
+    public function setColorBlue(int $colorBlue): City
     {
         $this->colorBlue = $colorBlue;
 
