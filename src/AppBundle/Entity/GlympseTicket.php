@@ -94,12 +94,7 @@ class GlympseTicket implements LocationServiceInterface
      */
     protected $queried = false;
 
-    public function __construct()
-    {
-
-    }
-
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -116,77 +111,79 @@ class GlympseTicket implements LocationServiceInterface
         return $this->city;
     }
 
-    public function getInviteId()
+    public function getInviteId(): string
     {
         return $this->inviteId;
     }
 
-    public function setInviteId($inviteId)
+    public function setInviteId(string $inviteId): GlympseTicket
     {
         $this->inviteId = $inviteId;
 
         return $this;
     }
 
-    public function getCounter()
+    public function getCounter(): int
     {
         return $this->counter;
     }
 
-    public function setCounter($counter)
+    public function setCounter(int $counter): GlympseTicket
     {
         $this->counter = $counter;
 
         return $this;
     }
 
-    public function increaseCounter(int $increasement = 1)
+    public function increaseCounter(int $increasement = 1): GlympseTicket
     {
         $this->counter += $increasement;
+
+        return $this;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public function setUsername($username)
+    public function setUsername(string $username): GlympseTicket
     {
         $this->username = $username;
 
         return $this;
     }
 
-    public function getColorRed()
+    public function getColorRed(): int
     {
         return $this->colorRed;
     }
 
-    public function setColorRed($colorRed)
+    public function setColorRed(string $colorRed): GlympseTicket
     {
         $this->colorRed = $colorRed;
 
         return $this;
     }
 
-    public function getColorGreen()
+    public function getColorGreen(): int
     {
         return $this->colorGreen;
     }
 
-    public function setColorGreen($colorGreen)
+    public function setColorGreen(string $colorGreen): GlympseTicket
     {
         $this->colorGreen = $colorGreen;
 
         return $this;
     }
 
-    public function getColorBlue()
+    public function getColorBlue(): int
     {
         return $this->colorBlue;
     }
 
-    public function setColorBlue($colorBlue)
+    public function setColorBlue(string $colorBlue): GlympseTicket
     {
         $this->colorBlue = $colorBlue;
 
@@ -202,72 +199,72 @@ class GlympseTicket implements LocationServiceInterface
         ];
     }
 
-    public function getStartDateTime()
+    public function getStartDateTime(): \DateTime
     {
         return $this->startDateTime;
     }
 
-    public function setStartDateTime($startDateTime)
+    public function setStartDateTime(\DateTime $startDateTime): GlympseTicket
     {
         $this->startDateTime = $startDateTime;
 
         return $this;
     }
 
-    public function getEndDateTime()
+    public function getEndDateTime(): \DateTime
     {
         return $this->endDateTime;
     }
 
-    public function setEndDateTime($endDateTime)
+    public function setEndDateTime(\DateTime $endDateTime): GlympseTicket
     {
         $this->endDateTime = $endDateTime;
 
         return $this;
     }
 
-    public function getActive()
+    public function getActive(): bool
     {
         return $this->active;
     }
 
-    public function setActive($active)
+    public function setActive(bool $active): GlympseTicket
     {
         $this->active = $active;
 
         return $this;
     }
 
-    public function getMessage()
+    public function getMessage(): string
     {
         return $this->message;
     }
 
-    public function setMessage($message)
+    public function setMessage(string $message): GlympseTicket
     {
         $this->message = $message;
 
         return $this;
     }
 
-    public function getDisplayName()
+    public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    public function setDisplayName($displayName)
+    public function setDisplayName(string $displayName = null): GlympseTicket
     {
         $this->displayName = $displayName;
 
         return $this;
     }
 
-    public function getCreationDateTime()
+    public function getCreationDateTime(): \DateTime
     {
         return $this->creationDateTime;
     }
 
-    public function setCreationDateTime(\DateTime $creationDateTime)
+    public function setCreationDateTime(\DateTime $creationDateTime): GlympseTicket
     {
         $this->creationDateTime = $creationDateTime;
 
@@ -279,7 +276,7 @@ class GlympseTicket implements LocationServiceInterface
         return $this->queried;
     }
 
-    public function setQueried(bool $queried)
+    public function setQueried(bool $queried): GlympseTicket
     {
         $this->queried = $queried;
 
