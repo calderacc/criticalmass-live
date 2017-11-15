@@ -54,7 +54,7 @@ class Ride
      * @ORM\Column(type="datetime")
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
-     * @JMS\Type("DateTime")
+     * @JMS\Type("DateTime<'U'>")
      * @JMS\SerializedName("dateTime")
      */
     protected $dateTime;
@@ -87,7 +87,7 @@ class Ride
     protected $location;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\SerializedName("latitude")
@@ -96,7 +96,7 @@ class Ride
     protected $latitude;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      * @JMS\Groups({"ride-list"})
      * @JMS\Expose
      * @JMS\SerializedName("longitude")
@@ -179,224 +179,129 @@ class Ride
      */
     protected $participationsNumberNo = 0;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId(int $id): Ride
     {
         $this->id = $id;
+
+        return $this;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $dateTime
-     * @return Ride
-     */
-    public function setDateTime(\DateTime $dateTime)
+    public function setDateTime(\DateTime $dateTime): Ride
     {
         $this->dateTime = $dateTime;
 
         return $this;
     }
 
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDateTime()
+    public function getDateTime(): \DateTime
     {
         return $this->dateTime;
     }
 
-    public function getSimpleDate()
-    {
-        return $this->dateTime->format('Y-m-d');
-    }
-
-    /**
-     * Set hasTime
-     *
-     * @param boolean $hasTime
-     * @return Ride
-     */
-    public function setHasTime(bool $hasTime)
+    public function setHasTime(bool $hasTime): Ride
     {
         $this->hasTime = $hasTime;
 
         return $this;
     }
 
-    /**
-     * Get hasTime
-     *
-     * @return boolean
-     */
-    public function getHasTime()
+    public function getHasTime(): bool
     {
         return $this->hasTime;
     }
 
-    /**
-     * Set hasLocation
-     *
-     * @param boolean $hasLocation
-     * @return Ride
-     */
-    public function setHasLocation($hasLocation)
+    public function setHasLocation(bool $hasLocation): Ride
     {
         $this->hasLocation = $hasLocation;
 
         return $this;
     }
 
-    /**
-     * Get hasLocation
-     *
-     * @return boolean
-     */
-    public function getHasLocation()
+    public function getHasLocation(): bool
     {
         return $this->hasLocation;
     }
 
-    /**
-     * Set location
-     *
-     * @param string $location
-     * @return Ride
-     */
-    public function setLocation($location)
+    public function setLocation(string $location): Ride
     {
         $this->location = $location;
 
         return $this;
     }
 
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
+    public function getLocation(): ?string
     {
         return $this->location;
     }
 
-    /**
-     * Set city
-     *
-     * @param City $city
-     * @return Ride
-     */
-    public function setCity(City $city = null)
+    public function setCity(City $city = null): Ride
     {
         $this->city = $city;
 
         return $this;
     }
 
-    /**
-     * Get city
-     *
-     * @return City
-     */
-    public function getCity()
+    public function getCity(): ?City
     {
         return $this->city;
     }
 
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     * @return Ride
-     */
-    public function setLatitude($latitude)
+    public function setLatitude(float $latitude): Ride
     {
         $this->latitude = $latitude;
 
         return $this;
     }
 
-    /**
-     * Get latitude
-     *
-     * @return float
-     */
-    public function getLatitude()
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    /**
-     * Set longitude
-     *
-     * @param float $longitude
-     * @return Ride
-     */
-    public function setLongitude($longitude)
+    public function setLongitude(float $longitude = null): Ride
     {
         $this->longitude = $longitude;
 
         return $this;
     }
 
-    /**
-     * Get longitude
-     *
-     * @return float
-     */
-    public function getLongitude()
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setTitle($title)
+    public function setTitle(string $title = null): Ride
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setDescription($description)
+    public function setDescription(string $description = null): Ride
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
-    }
-
-    public function isEqual(Ride $ride)
-    {
-        return $ride->getId() == $this->getId();
-    }
-
-    public function equals(Ride $ride)
-    {
-        return $this->isEqual($ride);
-    }
-
-    public function isSameRide(Ride $ride)
-    {
-        return $ride->getCity()->getId() == $this->getCity()->getId() && $ride->getFormattedDate() == $this->getFormattedDate();
     }
 
     public function __toString()
@@ -408,250 +313,40 @@ class Ride
         }
     }
 
-    public function __construct()
-    {
-        $this->dateTime = new \DateTime();
-        $this->createdAt = new \DateTime();
-        $this->visibleSince = new \DateTime();
-        $this->visibleUntil = new \DateTime();
-        $this->expectedStartDateTime = new \DateTime();
-        $this->archiveDateTime = new \DateTime();
-        $this->latitude = 0.0;
-        $this->longitude = 0.0;
-    }
-
-    /**
-     * Set estimatedParticipants
-     *
-     * @param integer $estimatedParticipants
-     * @return Ride
-     */
-    public function setEstimatedParticipants($estimatedParticipants)
-    {
-        $this->estimatedParticipants = $estimatedParticipants;
-
-        return $this;
-    }
-
-    /**
-     * Get estimatedParticipants
-     *
-     * @return integer
-     */
-    public function getEstimatedParticipants()
-    {
-        return $this->estimatedParticipants;
-    }
-
-    /**
-     * Set facebook
-     *
-     * @param string $facebook
-     * @return Ride
-     */
-    public function setFacebook($facebook)
+    public function setFacebook(string $facebook = null): Ride
     {
         $this->facebook = $facebook;
 
         return $this;
     }
 
-    /**
-     * Get facebook
-     *
-     * @return string
-     */
-    public function getFacebook()
+    public function getFacebook(): ?string
     {
         return $this->facebook;
     }
 
-    /**
-     * Set twitter
-     *
-     * @param string $twitter
-     * @return Ride
-     */
-    public function setTwitter($twitter)
+    public function setTwitter(string $twitter = null): Ride
     {
         $this->twitter = $twitter;
 
         return $this;
     }
 
-    /**
-     * Get twitter
-     *
-     * @return string
-     */
-    public function getTwitter()
+    public function getTwitter(): ?string
     {
         return $this->twitter;
     }
 
-    /**
-     * Set website
-     *
-     * @param string $website
-     * @return Ride
-     */
-    public function setUrl($url)
+    public function setUrl(string $url = null): Ride
     {
         $this->url = $url;
 
         return $this;
     }
 
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
-    }
-
-    /**
-     * @JMS\VirtualProperty
-     * @JMS\SerializedName("timestamp")
-     * @JMS\Type("integer")
-     * @return integer
-     */
-    public function getTimestamp()
-    {
-        return $this->dateTime->format('U');
-    }
-
-
-    public function getFormattedDate()
-    {
-        return $this->dateTime->format('Y-m-d');
-    }
-
-    public function getDate()
-    {
-        return $this->dateTime;
-    }
-
-    public function getTime()
-    {
-        return $this->dateTime;
-    }
-
-    public function setDate(\DateTime $date)
-    {
-        $this->dateTime = new \DateTime($date->format('Y-m-d') . ' ' . $this->dateTime->format('H:i:s'), $date->getTimezone());
-    }
-
-    public function setTime(\DateTime $time)
-    {
-        $this->dateTime = new \DateTime($this->dateTime->format('Y-m-d') . ' ' . $time->format('H:i:s'), $time->getTimezone());
-    }
-
-    /**
-     * Set estimatedDistance
-     *
-     * @param float $estimatedDistance
-     * @return Ride
-     */
-    public function setEstimatedDistance($estimatedDistance)
-    {
-        $this->estimatedDistance = $estimatedDistance;
-
-        return $this;
-    }
-
-    /**
-     * Get estimatedDistance
-     *
-     * @return float
-     */
-    public function getEstimatedDistance()
-    {
-        return $this->estimatedDistance;
-    }
-
-    /**
-     * Set estimatedDuration
-     *
-     * @param float $estimatedDuration
-     * @return Ride
-     */
-    public function setEstimatedDuration($estimatedDuration)
-    {
-        $this->estimatedDuration = $estimatedDuration;
-
-        return $this;
-    }
-
-    /**
-     * Get estimatedDuration
-     *
-     * @return float
-     */
-    public function getEstimatedDuration()
-    {
-        return $this->estimatedDuration;
-    }
-
-    /**
-     * Updates the hash value to force the preUpdate and postUpdate events to fire
-     */
-    public function refreshUpdated()
-    {
-        $this->setUpdated(date('Y-m-d H:i:s'));
-    }
-
-    /**
-     * @JMS\VirtualProperty
-     * @JMS\SerializedName("title")
-     * @JMS\Type("string")
-     * @return string
-     */
-    public function getFancyTitle()
-    {
-        if (!$this->title) {
-            return $this->city->getTitle() . ' ' . $this->dateTime->format('d.m.Y');
-        }
-
-        return $this->getTitle();
-    }
-
-    /**
-     * Set isArchived
-     *
-     * @param boolean $isArchived
-     * @return Ride
-     */
-    public function setIsArchived(bool $isArchived)
-    {
-        $this->isArchived = $isArchived;
-
-        return $this;
-    }
-
-    /**
-     * Get isArchived
-     *
-     * @return boolean
-     */
-    public function getIsArchived()
-    {
-        return $this->isArchived;
-    }
-
-    /**
-     * Set archiveDateTime
-     *
-     * @param \DateTime $archiveDateTime
-     * @return Ride
-     */
-    public function setArchiveDateTime(\DateTime $archiveDateTime)
-    {
-        $this->archiveDateTime = $archiveDateTime;
-
-        return $this;
     }
 
     public function getPin(): string
@@ -659,117 +354,15 @@ class Ride
         return $this->latitude . ',' . $this->longitude;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(\DateTime $createdAt): Ride
     {
         $this->createdAt = $createdAt;
 
         return $this;
-    }
-
-    /**
-     * Set participationsNumberYes
-     *
-     * @param integer $participationsNumberYes
-     * @return Ride
-     */
-    public function setParticipationsNumberYes($participationsNumberYes)
-    {
-        $this->participationsNumberYes = $participationsNumberYes;
-
-        return $this;
-    }
-
-    /**
-     * Get participationsNumberYes
-     *
-     * @return integer
-     */
-    public function getParticipationsNumberYes()
-    {
-        return $this->participationsNumberYes;
-    }
-
-    /**
-     * Set participationsNumberMaybe
-     *
-     * @param integer $participationsNumberMaybe
-     * @return Ride
-     */
-    public function setParticipationsNumberMaybe($participationsNumberMaybe)
-    {
-        $this->participationsNumberMaybe = $participationsNumberMaybe;
-
-        return $this;
-    }
-
-    /**
-     * Get participationsNumberMaybe
-     *
-     * @return integer
-     */
-    public function getParticipationsNumberMaybe()
-    {
-        return $this->participationsNumberMaybe;
-    }
-
-    /**
-     * Set participationsNumberNo
-     *
-     * @param integer $participationsNumberNo
-     * @return Ride
-     */
-    public function setParticipationsNumberNo($participationsNumberNo)
-    {
-        $this->participationsNumberNo = $participationsNumberNo;
-
-        return $this;
-    }
-
-    /**
-     * Get participationsNumberNo
-     *
-     * @return integer
-     */
-    public function getParticipationsNumberNo()
-    {
-        return $this->participationsNumberNo;
-    }
-
-    public function setViews($views)
-    {
-        $this->views = $views;
-    }
-
-    public function getViews()
-    {
-        return $this->views;
-    }
-
-    public function incViews()
-    {
-        ++$this->views;
-    }
-
-    public function getCountry()
-    {
-        if ($this->city) {
-            return $this->city->getCountry();
-        }
-
-        return null;
-    }
-
-    public function getIsEnabled()
-    {
-        if ($this->city) {
-            return $this->city->isEnabled();
-        }
-
-        return null;
     }
 }
