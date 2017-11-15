@@ -93,3 +93,8 @@ fos_elastica:
                         provider: ~
                         listener: ~
                         finder: ~
+
+jms_serializer:
+    object_constructors:
+        doctrine:
+            fallback_strategy: fallback
