@@ -1,7 +1,0 @@
-parameters:
-#    caldera_criticalmass_live.example.class: Caldera\Bundle\CriticalmassLiveBundle\Example
-
-services:
-    criticalmass.manager.position_manager:
-        class: AppBundle\Manager\PositionManager
-        arguments: ['@doctrine', '@fos_elastica.manager']
